@@ -43,7 +43,7 @@ class HorasAcogidaController extends Controller
                             if($hora->dia_semana == $dateNUM){
                                 $eventHoras[] = [
                                     /*'title' => $hora->hora_inicio. " - " . $hora->hora_fin,*/
-                                    'title' => "NIU",
+                                    'title' => "NIU - ".$hora->hora_fin ,
                                     'start' =>$date_str." ".$hora->hora_inicio,
                                     'end' =>$date_str." ". $hora->hora_fin,
                                     'id' => $contadorEventos,

@@ -22,6 +22,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::post('/evento/{evento}/signup', [App\Http\Controllers\EventosController::class,'signup'])->name('evento.signup');
 
-Route::get('/acogida', [App\Http\Controllers\HorasAcogidaController::class, 'index'])->name('acogida.index')->middleware('auth');
-Route::post('/acogida', [App\Http\Controllers\HorasAcogidaController::class, 'apuntar'])->name('acogida.apuntar')->middleware('auth');
+Route::get('/niu', [App\Http\Controllers\HorasAcogidaController::class, 'index'])->name('niu.index')->middleware('auth');
+Route::post('/niu', [App\Http\Controllers\HorasAcogidaController::class, 'apuntar'])->name('niu.apuntar')->middleware('auth');
+Route::get('/niu/apuntar', [App\Http\Controllers\HorasAcogidaController::class, 'show'])->name('apuntar.show')->middleware('auth');
 

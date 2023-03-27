@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="row">  
-        @if(isset($eventos) && $eventos)
+        @if(isset($eventos) && count($eventos)>0)
             @php
                 $num = 0;
                 $num = 12/count($eventos);
@@ -20,6 +20,10 @@
                     @include('eventos/block')
                 </div>
             @endforeach
+        @else
+            <div class="col-12">
+                <h3 class="text-center">No hay eventos</h3>
+            </div>
         @endif
     </div>
 </div>

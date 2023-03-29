@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-2"></div>
     <div class="col-md-8 col-sm-12">
-      <h2>Proximos Eventos:</h2>  
+      <h2>Pròxims Events:</h2>  
       <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -16,11 +16,11 @@
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
+          <span class="visually-hidden">Anterior</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
+          <span class="visually-hidden">Següent</span>
         </button>
         
       </div>

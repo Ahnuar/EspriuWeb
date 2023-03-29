@@ -12,4 +12,6 @@ class IniciController{
         return view('inici',$dades);
     }
 
+
+
 }

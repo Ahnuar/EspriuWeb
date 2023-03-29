@@ -48,5 +48,23 @@ class User extends Authenticatable
         return $this->belongsToMany(Eventos::class);
     }
 
+    public function scopeindex($query){
+        return $query->select('name')->where('monitor',true)->get();
+    }
+
+    public function scopebuscaruser($query, $correo){
+        
+        return $query->select('*')->where('email',$correo)->get();
+    }
+
+    public function scopehacermonitor($query,$correo){
+        $user = User::where('email',$correo)->first();
+        $user->monitor = 1;
+        $user->save();
+
+       return true;
+
+    }
+
 
 }

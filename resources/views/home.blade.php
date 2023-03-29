@@ -20,4 +20,12 @@
     </div>
 </div>
 
+@if($admin)
+    @include('adminfunc/gestionadmin')    
+@endif
+
+@if($monitor)
+    @include('monitorfunc/gestionmonitor')
+@endif
+
 @endsection

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHorasAcogidaTable extends Migration
+class CreateHijosPadresHorasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,20 @@ class CreateHorasAcogidaTable extends Migration
      */
     public function up()
     {
-        Schema::create('horas_acogida', function (Blueprint $table) {
+        Schema::create('hijos_padres_horas', function (Blueprint $table) {
             $table->id();
-            $table->string('dia_semana');
+            $table->unsignedBigInteger('idhijo');
+            $table->unsignedBigInteger('idpadre');
+            $table->string('servicio');
+            $table->DATE('fecha');
             $table->TIME('hora_inicio');
             $table->TIME('hora_fin');
-            $table->boolean('disponible')->default(true);
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('horas_acogida');
+        Schema::dropIfExists('hijos_padres_horas');
     }
 }

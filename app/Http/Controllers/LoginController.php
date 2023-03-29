@@ -24,7 +24,9 @@ class LoginController extends Controller
             // Check password
             if(Hash::check($request->password,$userInfo->password))
             {
+                
                 $request->session()->put('LoggedUser',$userInfo->id);
+                
                 return redirect('area');
             }
             else

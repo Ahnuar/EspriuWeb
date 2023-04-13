@@ -18,6 +18,12 @@ class Eventos extends Model
         return $query->where('fecha_hora_evento', '>', now())->orderBy('fecha_hora_evento')->get();
     }
 
+    public function scopebuscarpornombre($query,$nombre){
+        
+        return $query->where('nombre','like',$nombre)->get();
+        
+    }
+
     public function getUrlAttribute()
     {
         return route('evento.show', $this->id);

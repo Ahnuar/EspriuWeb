@@ -1,4 +1,7 @@
 <br><br>
+<!--Reestructuracion de codigo: 
+    - Nuevas views para gestion de eventos, niu y monitores. Des de el home poner botones con links.
+-->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -6,8 +9,9 @@
                 <div class="card-header">Funcions d'Administrador:</div>
                 <form action="{{route('home.hacermonitor')}}" method="POST">
                     @csrf
+                    <br>
                     <div class="card">
-                        <div class="card-header">Buscar usuari per correu:</div>
+                        <div class="card-header">Fer monitor per correu:</div>
                         <div class="card-body">
                             <label for="email" style="margin-left:30px">Email:      </label><input type="text" name="email" id="email" style="margin-left: 10px">
                             
@@ -29,6 +33,7 @@
                         @endif
 
                     @endif
+                    @include('adminfunc/gestioneventos')
                 </div>
             </div>
         </div>

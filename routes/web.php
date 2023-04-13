@@ -21,6 +21,11 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 Route::get('/',[App\Http\Controllers\IniciController::class, 'index'])->name('inici');
 
 Route::post('/home',[App\Http\Controllers\HomeController::class,'hacermonitor'])->name('home.hacermonitor');
+Route::post('/home/evento',[App\Http\Controllers\HomeController::class,'buscarEvento'])->name('home.buscarEvento');
+Route::post('/home/totsElsEvents',[App\Http\Controllers\HomeController::class,'mostrarTodos'])->name('home.mostrarTodos');
+Route::post('/home/evento/modificar',[App\Http\Controllers\HomeController::class, 'modificarevento'])->name('home.modificarevento');
+Route::post('/home/evento/insertar',[App\Http\Controllers\HomeController::class, 'insertarEvento'])->name('home.insertarEvento');
+Route::post('/home/evento/eliminar',[App\Http\Controllers\HomeController::class, 'eliminarEvento'])->name('home.eliminarEvento');
 
 Route::post('/evento/{evento}/signup', [App\Http\Controllers\EventosController::class,'signup'])->name('evento.signup');
 

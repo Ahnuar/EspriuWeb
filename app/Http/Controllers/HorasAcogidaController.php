@@ -88,12 +88,12 @@ class HorasAcogidaController extends Controller
             $horaElegida = explode(" ",$request->hora)[1];
             $finhoraElegida = explode(" ",$request->hora)[2];
             $diaElegido = explode(" ",$request->hora)[0];
-            $hora = HoraAcogida::find($horaElegida);
+            $hora = HoraAcogida::HorasNiuDia($diaElegido,$horaElegida, $finhoraElegida);
             if($hora == null){
                 return back()->withErrors(['message' => 'No se ha encontrado la hora.']);
             }
-
-            $hijoapuntado = HijosPadresHoras::VerHijoHora($request->hijo,$diaElegido,$horaElegida);
+        
+            $hijoapuntado = HijosPadresHoras::VerHijoHora($request->hijo,$diaElegido,$horaElegida, $finhoraElegida);
             
             if (count($hijoapuntado) > 0) {
                 return back()->withErrors(['message' => 'Este hijo ya está apuntado a esa hora.']);

@@ -11,10 +11,11 @@ class HijosPadresHoras extends Model
     protected $table = 'hijos_padres_horas';
 
     
-    public function scopeVerHijoHora($query, $idhijo,$fecha,$hora_inicio){
+    public function scopeVerHijoHora($query, $idhijo,$fecha,$hora_inicio,$hora_fin){
         return $query->where('idhijo', $idhijo)
                     ->where('fecha', $fecha)
                     ->where('hora_inicio', $hora_inicio)
+                    ->where('hora_fin', $hora_fin)
                     ->get();
     }
     

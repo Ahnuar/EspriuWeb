@@ -1,3 +1,9 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12">
 <div class="card">
     <!-- -->
     <div class="card-header">Modificar i Eliminar Events:</div>
@@ -5,7 +11,7 @@
         <div class="card">
             <div class="card-header">Mètode de búsqueda:</div>
             <div class="card-body">
-                <form action="{{route('home.buscarEvento')}}" method="POST" id="selectEventos">
+                <form action="{{route('buscarEvento')}}" method="POST" id="selectEventos">
                     @csrf
                     <label for="nombreEvento">Buscar per nom: </label>
                     <select name="nombreEvento" id="nombreEvento" form="selectEventos" >
@@ -16,21 +22,46 @@
                     <button type="submit" class="btn btn-primary" style="margin-right:30px; float: right">Buscar</button>
                 </form>
                 <br>
-                <form action="{{route('home.mostrarTodos')}}" method="POST">
+                <form action="{{route('mostrarTodos')}}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-primary">Mostrar Tots</button>
                 </form>
-                
-   
+
             </div>
         </div>
+        <br>
+            @if(isset($modificat))
+                @if($modificat)
+                <div class="alert alert-success text-center">
+                    Event {{$eventAlterat}} Modificat!
+                </div>
+                @endif
+                @if(!$modificat)
+                <div class="alert alert-danger text-center">
+                    No s'ha pogut modificar l'event {{$eventAlterat}}
+                </div>
+                @endif
+            @endif
+            
+            @if(isset($eliminado))
+                @if($eliminado)
+                <div class="alert alert-success text-center">
+                    Event {{$eventoEliminado}} Eliminat!
+                </div>
+                @endif
+                @if(!$eliminado)
+                <div class="alert alert-danger text-center">
+                    No s'ha pogut modificar l'event {{$eventoEliminado}}
+                </div>
+                @endif
+            @endif
         <br>
         @if(isset($trobat))
             @if($trobat)
             <div class="card">
                 <div class="card-header">{{$eventoSelected->nombre}}</div>
                 <div class="card-body">
-                    <form action="{{route('home.modificarevento')}}" method="POST">
+                    <form action="{{route('modificarevento')}}" method="POST">
                         @csrf
                         <div style="visibility: hidden">
                             <label for="id" style="margin-left:30px">Id: </label><input type="text" value="{{$eventoSelected->id}}" name="id" id="id" readonly><br><br>
@@ -41,7 +72,7 @@
                         <button type="submit" class="btn btn-primary" style="margin-right:30px; float: right">Modificar</button>
        
                     </form>
-                    <form action="{{route('home.eliminarEvento')}}" method="POST">
+                    <form action="{{route('eliminarEvento')}}" method="POST">
                         @csrf
                         <div style="visibility: hidden">
                             <label for="id" style="margin-left:30px">Id: </label><input type="text" value="{{$eventoSelected->id}}" name="id" id="id" readonly><br><br>
@@ -58,7 +89,7 @@
             <div class="card">
                 <div class="card-header">{{$evento->nombre}}</div>
                 <div class="card-body">
-                    <form action="{{route('home.modificarevento')}}" method="POST">
+                    <form action="{{route('modificarevento')}}" method="POST">
                         @csrf
                         <div style="visibility: hidden">
                             <label for="id" style="margin-left:30px">Id: </label><input type="text" value="{{$evento->id}}" name="id" id="id" readonly><br><br>
@@ -71,26 +102,20 @@
                         <button type="submit" class="btn btn-primary" style="margin-right:30px; float: right">Modificar</button>
     
                     </form>
+                    <form action="{{route('eliminarEvento')}}" method="POST">
+                        @csrf
+                        <div style="visibility: hidden">
+                            <label for="id" style="margin-left:30px">Id: </label><input type="text" value="{{$evento->id}}" name="id" id="id" readonly><br><br>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Eliminar</button>
+                    </form>
                 </div>
             </div>
             <br>
             @endforeach
-        </div>
+        
         @endif
     </div>
-    @if(isset($success))
-    @if($success)
-    <div class="alert alert-success text-center">
-        Event {{$eventAlterat}} Modificat!
-    </div>
-    @endif
-    @if(!$success)
-    <div class="alert alert-danger text-center">
-        No s'ha pogut modificar l'event {{$eventAlterat}}
-    </div>
-    @endif
-
-@endif
 
 </div>
 <br>
@@ -98,7 +123,7 @@
 <div class="card">
     <div class="card-header">Insertar Event:</div>
     <div class="card-body">
-        <form action="{{route('home.insertarEvento')}}" method="POST">
+        <form action="{{route('insertarEvento')}}" method="POST">
             @csrf
             <div style="visibility: hidden">
                 <label for="id" style="margin-left:30px">Id: </label><input type="text"  name="id" id="id" readonly><br><br>
@@ -125,3 +150,6 @@
     @endif
     </div>
 </div>
+</div>
+</div>
+@endsection

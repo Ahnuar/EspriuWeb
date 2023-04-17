@@ -20,12 +20,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/',[App\Http\Controllers\IniciController::class, 'index'])->name('inici');
 
-Route::post('/home',[App\Http\Controllers\HomeController::class,'hacermonitor'])->name('home.hacermonitor');
-Route::post('/home/evento',[App\Http\Controllers\HomeController::class,'buscarEvento'])->name('home.buscarEvento');
-Route::post('/home/totsElsEvents',[App\Http\Controllers\HomeController::class,'mostrarTodos'])->name('home.mostrarTodos');
-Route::post('/home/evento/modificar',[App\Http\Controllers\HomeController::class, 'modificarevento'])->name('home.modificarevento');
-Route::post('/home/evento/insertar',[App\Http\Controllers\HomeController::class, 'insertarEvento'])->name('home.insertarEvento');
-Route::post('/home/evento/eliminar',[App\Http\Controllers\HomeController::class, 'eliminarEvento'])->name('home.eliminarEvento');
+Route::get('/home/gestioneventos', [App\Http\Controllers\adminFuncController::class, 'index'])->name('gestioneventos');
+
+Route::get('/home/altasbajasmonitores', [App\Http\Controllers\adminFuncController::class, 'mostrarviewmonitores'])->name('altasbajasmonitores');
+
+Route::post('/home/altasbajasmonitores/hacermonitor',[App\Http\Controllers\adminFuncController::class,'hacermonitor'])->name('hacermonitor');
+Route::post('/home/gestioneventos/evento',[App\Http\Controllers\adminFuncController::class,'buscarEvento'])->name('buscarEvento');
+Route::post('/home/gestioneventos/totsElsEvents',[App\Http\Controllers\adminFuncController::class,'mostrarTodos'])->name('mostrarTodos');
+Route::post('/home/gestioneventos/evento/modificar',[App\Http\Controllers\adminFuncController::class, 'modificarevento'])->name('modificarevento');
+Route::post('/home/gestioneventos/evento/insertar',[App\Http\Controllers\adminFuncController::class, 'insertarEvento'])->name('insertarEvento');
+Route::post('/home/gestioneventos/evento/eliminar',[App\Http\Controllers\adminFuncController::class, 'eliminarEvento'])->name('eliminarEvento');
 
 Route::post('/evento/{evento}/signup', [App\Http\Controllers\EventosController::class,'signup'])->name('evento.signup');
 

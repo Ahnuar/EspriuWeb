@@ -22,3 +22,26 @@
     object-position: center center;
 }
 
+.card-header{
+    color: #FFFFFF;
+    background-color: #0EB1FF;
+}
+
+.adminfunc{
+    margin-left: 5px;
+}
+
+.navbar{
+    background-color: #087EB6 !important;
+}
+
+.nav-link{
+    color: #FFFFFF !important;
+}
+.navbar-brand{
+    color: #FFFFFF !important;
+}
+
+#app{
+    background-color: #ECECEC;
+}

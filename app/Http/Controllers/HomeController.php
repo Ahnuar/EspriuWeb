@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Eventos;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -38,28 +39,10 @@ class HomeController extends Controller
             $dades["monitor"]=true;
         }
 
+        $dades["eventos"] = Eventos::Proximos();
+
         return view('home', $dades);
     }
-
-    public function hacermonitor(Request $request){
-        $user=auth()->user();
-        $email = $request->email;
-        $dades["monitor"]=$user["monitor"];
-        $dades["admin"]=$user["admin"];
-
-        $dades["success"]=false;
-        $dades["nomuser"]=$email;
-
-        $usuario= User::buscaruser($email);
-
-        if(!Count($usuario)==0){
-            if($usuario[0]["monitor"]==0){
-                
-                $dades["success"] = User::hacermonitor($usuario[0]['email']);
-                $dades["monitoruser"] = true;
-                $dades["nomuser"] = $usuario["name"];
-            }
-        }
-        return view('home',$dades);
-    }
 }
+
+

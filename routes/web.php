@@ -25,7 +25,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::post('/home',[App\Http\Controllers\HomeController::class,'hacermonitor'])->name('home.hacermonitor');
+    Route::get('/home/gestioneventos', [App\Http\Controllers\adminFuncController::class, 'index'])->name('gestioneventos');
+
+Route::get('/home/altasbajasmonitores', [App\Http\Controllers\adminFuncController::class, 'mostrarviewmonitores'])->name('altasbajasmonitores');
+
+Route::post('/home/altasbajasmonitores/hacermonitor',[App\Http\Controllers\adminFuncController::class,'hacermonitor'])->name('hacermonitor');
+Route::post('/home/gestioneventos/evento',[App\Http\Controllers\adminFuncController::class,'buscarEvento'])->name('buscarEvento');
+Route::post('/home/gestioneventos/totsElsEvents',[App\Http\Controllers\adminFuncController::class,'mostrarTodos'])->name('mostrarTodos');
+Route::post('/home/gestioneventos/evento/modificar',[App\Http\Controllers\adminFuncController::class, 'modificarevento'])->name('modificarevento');
+Route::post('/home/gestioneventos/evento/insertar',[App\Http\Controllers\adminFuncController::class, 'insertarEvento'])->name('insertarEvento');
+Route::post('/home/gestioneventos/evento/eliminar',[App\Http\Controllers\adminFuncController::class, 'eliminarEvento'])->name('eliminarEvento');
     
     Route::post('/evento/{evento}/signup', [App\Http\Controllers\EventosController::class,'signup'])->name('evento.signup');
     

@@ -8,7 +8,7 @@
       <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            {{-- <img src="{{$eventos[0]->imagen}}" class="d-block w-100" alt="First"> --}}
+            <img src="{{ URL::asset('/img/imagen_classe.jpg') }}" class="d-block w-100" alt="First">
           </div>
           <div class="carousel-item">
             {{-- <img src="{{$eventos[1]->imagen}}" class="d-block w-100 " alt="Second"> --}}
@@ -30,9 +30,12 @@
 
   <div class="container  mt-5 font-weight-light">
     <div class="row margin-bottom-50">
-              <div class="col-12 col-md-6 col-xl-4"> 
-                <div class="mb-5" style="min-height: 40%">
-                  <img class="img-fluid margin-bottom-15" src="https://agora.xtec.cat/ceip-espriu-montgat/wp-content/uploads/usu1919/2020/02/logo-AFA.jpg" alt="AFA">
+              <div class="col-12 col-md-4"> 
+                <div class="div_pr" style="min-height: 40%">
+                  <img class="img-fluid margin-bottom-15" src="{{ URL::asset('/img/AFA_Logo.png') }}" alt="AFA">
+                  <div class="div_btn">
+                    
+                  </div>
                 </div>
                 <a class="btn_1" href="https://afasalvadorespriu.blogspot.com/">Més Informació</a> 
                 <p></p><p>Treballem amb l'ajuda de l' <strong><span style="color: #33cccc;">AFA</span>.</strong> De l'escola <strong><span style="color: #33cccc;">Salvador Espriu</span>.</strong></p><p>

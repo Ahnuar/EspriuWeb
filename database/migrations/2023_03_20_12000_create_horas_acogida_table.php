@@ -21,6 +21,7 @@ class CreateHorasAcogidaTable extends Migration
             $table->TIME('hora_fin');
             $table->boolean('disponible')->default(true);
             $table->timestamps();
+            $table->float('Precio');
 
             $table->foreign('idservicio')->references('id')->on('servicios');
         });

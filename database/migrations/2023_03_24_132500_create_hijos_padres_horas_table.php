@@ -17,11 +17,18 @@ class CreateHijosPadresHorasTable extends Migration
             $table->id();
             $table->unsignedBigInteger('idhijo');
             $table->unsignedBigInteger('idpadre');
+            $table->unsignedBigInteger('idhora');
+
             $table->string('servicio');
             $table->DATE('fecha');
             $table->TIME('hora_inicio');
             $table->TIME('hora_fin');
             $table->timestamps();
+
+            $table->foreign('idhijo')->references('id')->on('hijos');
+            $table->foreign('idpadre')->references('id')->on('users');
+            $table->foreign('idhora')->references('id')->on('horas_acogida');
+
         });
     }
 

@@ -98,10 +98,11 @@ class HorasAcogidaController extends Controller
             if (count($hijoapuntado) > 0) {
                 return back()->withErrors(['message' => 'Este hijo ya está apuntado a esa hora.']);
             }
-
+            
             $hijosPadresHoras = new HijosPadresHoras();
             $hijosPadresHoras->idhijo = $request->hijo;
             $hijosPadresHoras->idpadre = auth()->user()->id;
+            $hijosPadresHoras->idhora = $hora[0]->id;
             $hijosPadresHoras->servicio = "NIU";
             $hijosPadresHoras->fecha = $diaElegido;
             $hijosPadresHoras->hora_inicio = $horaElegida;

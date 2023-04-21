@@ -64,11 +64,11 @@
                     <form action="{{route('modificarevento')}}" method="POST">
                         @csrf
                         <div style="visibility: hidden">
-                            <label for="id" style="margin-left:30px">Id: </label><input type="text" value="{{$eventoSelected->id}}" name="id" id="id" readonly><br><br>
+                            <label for="id" style="margin-left:30px">Id: </label><input class="form-control w-50" type="text" value="{{$eventoSelected->id}}" name="id" id="id" readonly><br><br>
                         </div>
-                        <label for="nombre" style="margin-left:30px">Nom:</label><input value="{{$eventoSelected->nombre}}" type="text" name="nombre" id="nombre" style="margin-left: 10px"><br><br>
-                        <label for="desc" style="margin-left:30px">Descripció:</label><textarea name="desc" id="desc" style="margin-left: 10px">{{$eventoSelected->descripcion}}</textarea><br><br>
-                        <label for="data" style="margin-left:30px">Data-Hora:</label><input type="datetime-local" id="data" name="data" value="{{$eventoSelected->fecha_hora_evento}}"><br><br>
+                        <label for="nombre" style="margin-left:30px">Nom:</label><input class="form-control w-50" value="{{$eventoSelected->nombre}}" type="text" name="nombre" id="nombre" style="margin-left: 10px"><br><br>
+                        <label for="desc" style="margin-left:30px">Descripció:</label><textarea class="form-control w-50" name="desc" id="desc" style="margin-left: 10px">{{$eventoSelected->descripcion}}</textarea><br><br>
+                        <label for="data" style="margin-left:30px">Data-Hora:</label><input class="form-control w-50" type="datetime-local" id="data" name="data" value="{{$eventoSelected->fecha_hora_evento}}"><br><br>
                         <button type="submit" class="btn btn-primary" style="margin-right:30px; float: right">Modificar</button>
        
                     </form>
@@ -94,11 +94,11 @@
                         <div style="visibility: hidden">
                             <label for="id" style="margin-left:30px">Id: </label><input type="text" value="{{$evento->id}}" name="id" id="id" readonly><br><br>
                         </div>
-                        <label for="nombre" style="margin-left:30px">Nom:</label><input value="{{$evento->nombre}}" type="text" name="nombre" id="nombre" style="margin-left: 10px"><br><br>
-                        <label for="desc" style="margin-left:30px">Descripció:</label><textarea name="desc" id="desc" style="margin-left: 10px">{{$evento->descripcion}}</textarea><br><br>
-                        <label for="url" style="margin-left:30px">Url Google Maps:</label><textarea name="url" id="url" style="margin-left: 10px">{{$evento->url_google_maps}}</textarea><br><br>
-                        <label for="curs" style="margin-left:30px">Curs:</label><input value="{{$evento->curso}}" type="text" name="curs" id="curs" style="margin-left: 10px"><br><br>
-                        <label for="data" style="margin-left:30px">Data-Hora:</label><input type="datetime-local" id="data" name="data" value="{{$evento->fecha_hora_evento}}"><br><br>
+                        <label for="nombre" style="margin-left:30px">Nom:</label><input class="form-control w-50" value="{{$evento->nombre}}" type="text" name="nombre" id="nombre" style="margin-left: 10px"><br><br>
+                        <label for="desc" style="margin-left:30px">Descripció:</label><textarea  class="form-control w-50" name="desc" id="desc" style="margin-left: 10px">{{$evento->descripcion}}</textarea><br><br>
+                        <label for="url" style="margin-left:30px">Url Google Maps:</label><textarea class="form-control w-50" name="url" id="url" style="margin-left: 10px">{{$evento->url_google_maps}}</textarea><br><br>
+                        <label for="curs" style="margin-left:30px">Curs:</label><input class="form-control w-50" value="{{$evento->curso}}" type="text" name="curs" id="curs" style="margin-left: 10px"><br><br>
+                        <label for="data" style="margin-left:30px">Data-Hora:</label><input  class="form-control w-50" type="datetime-local" id="data" name="data" value="{{$evento->fecha_hora_evento}}"><br><br>
                         <button type="submit" class="btn btn-primary" style="margin-right:30px; float: right">Modificar</button>
     
                     </form>
@@ -128,11 +128,11 @@
             <div style="visibility: hidden">
                 <label for="id" style="margin-left:30px">Id: </label><input type="text"  name="id" id="id" readonly><br><br>
             </div>
-            <label for="nombre" style="margin-left:30px">Nom:</label><input  type="text" name="nombre" id="nombre" style="margin-left: 10px"><br><br>
-            <label for="desc" style="margin-left:30px">Descripció:</label><textarea name="desc" id="desc" style="margin-left: 10px"></textarea><br><br>
-            <label for="url" style="margin-left:30px">Url Google Maps:</label><textarea name="url" id="url" style="margin-left: 10px"></textarea><br><br>
-            <label for="curs" style="margin-left:30px">Curs:</label><input  type="text" name="curs" id="curs" style="margin-left: 10px"><br><br>
-            <label for="data" style="margin-left:30px">Data-Hora:</label><input type="datetime-local" id="data" name="data"><br><br>
+            <label for="nombre" style="margin-left:30px">Nom:</label><input class="form-control w-50" type="text" name="nombre" id="nombre" style="margin-left: 10px"><br><br>
+            <label for="desc" style="margin-left:30px">Descripció:</label><textarea class="form-control w-50" name="desc" id="desc" style="margin-left: 10px"></textarea><br><br>
+            <label for="url" style="margin-left:30px">Url Google Maps:</label><textarea class="form-control w-50" name="url" id="url" style="margin-left: 10px"></textarea><br><br>
+            <label for="curs" style="margin-left:30px">Curs:</label><input  class="form-control w-50" type="text" name="curs" id="curs" style="margin-left: 10px"><br><br>
+            <label for="data" style="margin-left:30px">Data-Hora:</label><input class="form-control w-50" type="datetime-local" id="data" name="data"><br><br>
             <button type="submit" class="btn btn-primary" style="margin-right:30px; float: right">Insertar</button>
 
         </form>

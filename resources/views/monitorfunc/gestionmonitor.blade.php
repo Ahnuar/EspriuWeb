@@ -4,8 +4,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">Funcions de Monitor:</div>
-                    <br>
-                </div>
+                <br>
             </div>
         </div>
     </div>

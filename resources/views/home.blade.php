@@ -20,6 +20,8 @@
     </div>
 </div>
 
+@include('hijos/gestionhijos')
+
 @if($admin)
     @include('adminfunc/gestionadmin')
 @endif

@@ -49,6 +49,10 @@ class adminFuncController extends Controller
         return view('adminfunc/gestiondemonitores');
     }
 
+    public function mostrarViewGestioNiu(){
+        return view('adminfunc/gestionniu');
+    }
+
     public function hacermonitor(Request $request){
         $user=auth()->user();
         $email = $request->email;

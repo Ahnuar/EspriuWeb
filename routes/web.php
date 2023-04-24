@@ -37,6 +37,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/home/gestioneventos/evento/insertar',[App\Http\Controllers\adminFuncController::class, 'insertarEvento'])->name('insertarEvento');
     Route::post('/home/gestioneventos/evento/eliminar',[App\Http\Controllers\adminFuncController::class, 'eliminarEvento'])->name('eliminarEvento');
 
+    Route::post('/home/gestioNiu/hora',[App\Http\Controllers\adminFuncController::class,'buscarHora'])->name('buscarHora');
 
     Route::get('/home/gestioNiu', [App\Http\Controllers\adminFuncController::class, 'mostrarViewGestioNiu'])->name('gestioNiu');
 

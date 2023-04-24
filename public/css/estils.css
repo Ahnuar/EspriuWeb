@@ -56,4 +56,13 @@ html{
     background-color: #ECECEC;
 }
 
+#data{margin-left: 10px ;}
+#Precio{margin-left: 10px ;}
+.pepe{
+    width: 100%;
 
+}
+
+@media (min-width: 728px){
+    .pepe{width: 50%;}
+}

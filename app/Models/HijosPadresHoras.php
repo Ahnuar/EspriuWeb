@@ -18,6 +18,26 @@ class HijosPadresHoras extends Model
                     ->where('hora_fin', $hora_fin)
                     ->get();
     }
+
+    public function scopeVerHorasHijo($query, $idpadre){
+        return
+                $query
+                    ->selectRaw('hijos_padres_horas.*,horas_acogida.Precio,hijos.nombre,hijos.apellidos,hijos.correo')
+                    ->join('hijos','hijos_padres_horas.idhijo', '=', 'hijos.id')
+                    ->join('horas_acogida', 'hijos_padres_horas.idhora', '=', 'horas_acogida.id')
+                    ->where('hijos_padres_horas.idpadre', $idpadre)
+                    ->get();
+    }
+
+    public function scopeVerApuntadosPorFecha($query, $fecha){
+        return
+                $query
+                    ->selectRaw('hijos_padres_horas.*,horas_acogida.Precio,hijos.nombre,hijos.apellidos,hijos.correo')
+                    ->join('hijos','hijos_padres_horas.idhijo', '=', 'hijos.id')
+                    ->join('horas_acogida', 'hijos_padres_horas.idhora', '=', 'horas_acogida.id')
+                    ->where('hijos_padres_horas.fecha', $fecha)
+                    ->get();
+    }
     
     
 }

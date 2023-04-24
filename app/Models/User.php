@@ -66,5 +66,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
-
+    public function scopeVerRegistrodePagos($query){
+        return $query->select('name','email','monitor')->where('monitor',true)->get();
+    }
 }

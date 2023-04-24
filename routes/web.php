@@ -15,14 +15,18 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes(['verify' => true]);
-
+Route::fallback(function () {
+    return redirect()->route('inici');
+}); 
 
 Route::get('/',[App\Http\Controllers\IniciController::class, 'index'])->name('inici');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/eventos',[App\Http\Controllers\EventosController::class,'index'])->name('eventos');
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+    Route::get('/facturacio',[App\Http\Controllers\FacturacioController::class,'index'])->name('facturacio');
+    Route::get('/lista',[App\Http\Controllers\FacturacioController::class,'lista'])->name('lista');
+    
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::post('/home/insertarEvent', [App\Http\Controllers\HomeController::class,'insertarFill'])->name('insertarFill');
     

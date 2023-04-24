@@ -31,6 +31,7 @@ class EventosController extends Controller
         return view('eventos/detall',$dades);
     }
 
+
     public function signup($event)
     {
         auth()->user()->eventos()->attach($event);

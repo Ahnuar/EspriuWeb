@@ -24,7 +24,9 @@ class LoginController extends Controller
             // Check password
             if(Hash::check($request->password,$userInfo->password))
             {
+                
                 $request->session()->put('LoggedUser',$userInfo->id);
+                
                 return redirect('area');
             }
             else
@@ -51,13 +53,20 @@ class LoginController extends Controller
         ]);
         
         //create a email to send it to the user witha  token to verify the email
-
         // Insert data into database
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-        $save = $user->save();
+        $user->admin = 0;
+        $user->monitor = 0;
+
+        try{
+            $save = $user->save();
+        }catch(\Exception $e){
+            return back()->with('fail','Something went wrong, try again later');
+        }
+       
 
 
         //redirected

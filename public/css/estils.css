@@ -10,7 +10,59 @@
 }
 
 .btn-primary{
-    background-color: #F8F8F8;
-    border-radius: 0%;
-    color:black;
+    background-color: #FFFFFF;
+    border-radius: 0,375rem;
+    color:black; 
+    border: none; 
+}
+
+.btn-primary:hover{
+    background-color: #0EB1FF !important;
+    border-color: #0EB1FF !important; 
+}
+
+.imagenevento{
+    width: 50%;
+    height: 20%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.card-header{
+    color: #FFFFFF;
+    background-color: #0EB1FF;
+}
+
+.adminfunc{
+    margin-left: 5px;
+}
+
+.navbar{
+    background-color: #087EB6 !important;
+}
+
+.nav-link{
+    color: #FFFFFF !important;
+}
+.navbar-brand{
+    color: #FFFFFF !important;
+}
+
+
+html{
+    background-color: #ECECEC;
+} 
+#app{
+    background-color: #ECECEC;
+}
+
+#data{margin-left: 10px ;}
+#Precio{margin-left: 10px ;}
+.pepe{
+    width: 100%;
+
+}
+
+@media (min-width: 728px){
+    .pepe{width: 50%;}
 }

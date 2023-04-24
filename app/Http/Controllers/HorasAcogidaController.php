@@ -23,8 +23,7 @@ class HorasAcogidaController extends Controller
         
         return view('niu.detall', compact('fechas', 'hijos','eventHoras'));
     }
-
-
+    
     private function horas($fechas=null){
         if($fechas[0]->fecha_fin>=now()){
             $cont=0;
@@ -88,20 +87,21 @@ class HorasAcogidaController extends Controller
             $horaElegida = explode(" ",$request->hora)[1];
             $finhoraElegida = explode(" ",$request->hora)[2];
             $diaElegido = explode(" ",$request->hora)[0];
-            $hora = HoraAcogida::find($horaElegida);
+            $hora = HoraAcogida::HorasNiuDia($diaElegido,$horaElegida, $finhoraElegida);
             if($hora == null){
                 return back()->withErrors(['message' => 'No se ha encontrado la hora.']);
             }
-
-            $hijoapuntado = HijosPadresHoras::VerHijoHora($request->hijo,$diaElegido,$horaElegida);
+        
+            $hijoapuntado = HijosPadresHoras::VerHijoHora($request->hijo,$diaElegido,$horaElegida, $finhoraElegida);
             
             if (count($hijoapuntado) > 0) {
                 return back()->withErrors(['message' => 'Este hijo ya está apuntado a esa hora.']);
             }
-
+            
             $hijosPadresHoras = new HijosPadresHoras();
             $hijosPadresHoras->idhijo = $request->hijo;
             $hijosPadresHoras->idpadre = auth()->user()->id;
+            $hijosPadresHoras->idhora = $hora[0]->id;
             $hijosPadresHoras->servicio = "NIU";
             $hijosPadresHoras->fecha = $diaElegido;
             $hijosPadresHoras->hora_inicio = $horaElegida;

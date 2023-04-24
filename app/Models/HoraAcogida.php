@@ -20,5 +20,25 @@ class HoraAcogida extends Model
         return $query->get();
     }
 
+    public function scopeHoresNiuModificar($query){
+        $query->join('servicios', 'horas_acogida.idservicio', '=', 'servicios.id')
+            ->select('horas_acogida.*')
+            ->where('servicios.nombre','LIKE', '%NIU%');
+        return $query->get();
+    }
+
+    //ver hora y dia 
+    public function scopeHorasNiuDia($query, $dia, $hora,$hora_fin){
+
+        $dia_semana_numero = date('N', strtotime($dia));
+        $query
+            ->select('*')
+            ->where('hora_inicio','=', $hora)
+            ->where('dia_semana','=' ,$dia_semana_numero)
+            ->where('hora_fin','=', $hora_fin);
+        return $query->get();
+    }
+
+
 }
 

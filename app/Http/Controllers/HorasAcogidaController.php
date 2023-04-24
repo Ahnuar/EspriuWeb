@@ -23,8 +23,7 @@ class HorasAcogidaController extends Controller
         
         return view('niu.detall', compact('fechas', 'hijos','eventHoras'));
     }
-
-
+    
     private function horas($fechas=null){
         if($fechas[0]->fecha_fin>=now()){
             $cont=0;

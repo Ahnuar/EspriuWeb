@@ -19,6 +19,7 @@
                     @if(count($hijos)==0)
                         <p>Vosté no té ningún fill enregistrat!</p>
                     @endif
+                    <!--insertar hijo solo para administrador, asignar hijo para el usuario-->
                     @include('hijos/insertarHijo')
                 </div>
             </div>

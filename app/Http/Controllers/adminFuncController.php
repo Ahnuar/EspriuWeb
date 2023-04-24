@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Eventos;
+use App\Models\HoraAcogida;
 use Illuminate\Http\Request;
 
 class adminFuncController extends Controller
@@ -50,7 +51,8 @@ class adminFuncController extends Controller
     }
 
     public function mostrarViewGestioNiu(){
-        return view('adminfunc/gestionniu');
+        $dades["horas"] = HoraAcogida::HoresNiuModificar();
+        return view('adminfunc/gestionniu',$dades);
     }
 
     public function hacermonitor(Request $request){
@@ -80,6 +82,7 @@ class adminFuncController extends Controller
     public function buscarEvento(Request $request){
         $evento = Eventos::find($request->nombreEvento);
         $dades["trobat"]=true;
+
         $user=auth()->user();
         $dades["monitor"]=$user["monitor"];
         $dades["admin"]=$user["admin"];
@@ -87,6 +90,19 @@ class adminFuncController extends Controller
     
         $dades["eventos"] = Eventos::Proximos();
         return view('adminfunc/gestioneventos',$dades);
+    }
+
+    public function buscarHora(Request $request){
+        //retorna null
+        $hora = HoraAcogida::find($request->horaSelected);
+        $dades["trobat"]=true;
+        $user=auth()->user();
+        $dades["monitor"]=$user["monitor"];
+        $dades["admin"]=$user["admin"];
+        $dades["horaSelected"]=$hora;
+    
+        $dades["horas"] = HoraAcogida::HoresNiuModificar();
+        return view('adminfunc/gestionniu',$dades);
     }
 
     public function mostrarTodos(Request $request){

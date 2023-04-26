@@ -10,7 +10,7 @@
             <label for="nombre" style="margin-left:30px">Nom:</label><br><input required class="form-control w-50" type="text" name="nombre" id="nombre" style="margin-left: 10px"><br><br>
             <label for="apellidos" style="margin-left:30px">Cognoms:</label><br><input required class="form-control w-50" type="text" name="apellidos" id="apellidos" style="margin-left: 10px"><br><br>
             <label for="correo" style="margin-left:30px">Correu:</label><br><input required class="form-control w-50" type="text" name="correo" id="correo" style="margin-left: 10px"><br><br>
-            <button type="submit" class="btn btn-primary" style="margin-right:30px; float: right">Insertar</button>
+            <button type="submit" class="btn btn-primary">Insertar</button>
 
         </form>
 

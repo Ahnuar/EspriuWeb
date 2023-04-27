@@ -68,15 +68,16 @@
                         <label for="nombre" style="margin-left:30px">Nom:</label><input required class="form-control pepe" value="{{$eventoSelected->nombre}}" type="text" name="nombre" id="nombre" style="margin-left: 10px"><br><br>
                         <label for="desc" style="margin-left:30px">Descripció:</label><textarea required class="form-control pepe" name="desc" id="desc" style="margin-left: 10px">{{$eventoSelected->descripcion}}</textarea><br><br>
                         <label for="data" style="margin-left:30px">Data-Hora:</label><input required class="form-control pepe" type="datetime-local" id="data" name="data" value="{{$eventoSelected->fecha_hora_evento}}"><br><br>
-                        <button type="submit" class="btn btn-primary" style="margin-right:30px; float: right">Modificar</button>
-       
+                        <button type="submit" class="btn btn-primary" style="float: left">Modificar</button>
+    
                     </form>
                     <form action="{{route('eliminarEvento')}}" method="POST">
                         @csrf
+
+                        <button type="submit" class="btn btn-primary eliminar">Eliminar</button>
                         <div style="visibility: hidden">
-                            <label for="id" style="margin-left:30px">Id: </label><input type="text" value="{{$eventoSelected->id}}" name="id" id="id" readonly><br><br>
+                            <label for="id">Id: </label><input type="text" value="{{$eventoSelected->id}}" name="id" id="id" readonly><br><br>
                         </div>
-                        <button type="submit" class="btn btn-primary">Eliminar</button>
                     </form>
                 </div>
             </div>
@@ -98,15 +99,16 @@
                         <label for="url" style="margin-left:30px">Url Google Maps:</label><textarea required class="form-control pepe" name="url" id="url" style="margin-left: 10px">{{$evento->url_google_maps}}</textarea><br><br>
                         <label for="curs" style="margin-left:30px">Curs:</label><input required class="form-control pepe" value="{{$evento->curso}}" type="text" name="curs" id="curs" style="margin-left: 10px"><br><br>
                         <label for="data" style="margin-left:30px">Data-Hora:</label><input required class="form-control pepe" type="datetime-local" id="data" name="data" value="{{$evento->fecha_hora_evento}}"><br><br>
-                        <button type="submit" class="btn btn-primary" style="margin-right:30px; float: right">Modificar</button>
+                        <button type="submit" class="btn btn-primary" style="float: left">Modificar</button>
     
                     </form>
                     <form action="{{route('eliminarEvento')}}" method="POST">
                         @csrf
+
+                        <button type="submit" class="btn btn-primary eliminar">Eliminar</button>
                         <div style="visibility: hidden">
-                            <label for="id" style="margin-left:30px">Id: </label><input type="text" value="{{$evento->id}}" name="id" id="id" readonly><br><br>
+                            <label for="id">Id: </label><input type="text" value="{{$evento->id}}" name="id" id="id" readonly><br><br>
                         </div>
-                        <button type="submit" class="btn btn-primary">Eliminar</button>
                     </form>
                 </div>
             </div>
@@ -132,7 +134,7 @@
             <label for="url" style="margin-left:30px">Url Google Maps:</label><textarea required class="form-control pepe" name="url" id="url" style="margin-left: 10px"></textarea><br><br>
             <label for="curs" style="margin-left:30px">Curs:</label><input required class="form-control pepe" type="text" name="curs" id="curs" style="margin-left: 10px"><br><br>
             <label for="data" style="margin-left:30px">Data-Hora:</label><input required class="form-control pepe" type="datetime-local" id="data" name="data"><br><br>
-            <button type="submit" class="btn btn-primary" style="margin-right:30px; float: right">Insertar</button>
+            <button type="submit" class="btn btn-primary" >Insertar</button>
 
         </form>
         @if(isset($creado))

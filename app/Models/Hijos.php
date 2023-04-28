@@ -18,4 +18,11 @@ class Hijos extends Model
             ->where('hijos_padres.user_id', $id);
         return $query->get();
     }
+
+    public function scopeNens($query,$id){
+
+        $query->join('hijos_padres', 'hijos_padres.hijos_id', '!=', 'hijos.id')
+        ->select('hijos.*');
+        return $query->get();
+    }
 }

@@ -8,58 +8,123 @@
                 <div class="card-header">Gestió del niu:</div>
                 <div class="card-body">
                 <!-- tabla horas acogida 
-                altas bajas y modificaciones hora inicio hora fin dia semana precio -->
+                altas bajas y modificaciones hora inicio hora fin dia semana precio 
+              
+            -->
                 <br>
                 <div class="card">
                     <div class="card-header">Mètode de búsqueda:</div>
                     <div class="card-body">
-                        <form action="{{route('buscarHora')}}" method="POST" id="selectHoras">
+                        <form action="{{route('buscarHorasXDia')}}" method="POST" id="selectDies">
                             @csrf
-                            <label for="horaSelected">Buscar per nom: </label>
-                            <select name="horaSelected" id="horaSelected" form="selectHoras" class="form-control pepe">
-                                @foreach($horas as $hora)
-                                    <option value="{{$hora["id"]}}">{{$hora->hora_inicio}} - {{$hora->hora_fin}}</option>
-                                @endforeach
-                            </select>
+                            <label for="diaSelected">Dia setmana: </label>
+                                <select name="diaSelected" id="diaSelected" class="form-control pepe">
+                                    <option value="1">Dilluns</option>
+                                    <option value="2">Dimarts</option>
+                                    <option value="3">Dimecres</option>
+                                    <option value="4">Dijous</option>
+                                    <option value="5">Divendres</option>
+                                </select>
                             <br>
                             <button type="submit" class="btn btn-primary">Buscar</button>
-                        </form>     
+                        </form>
+                        
+                        @if(isset($trobat))
+                        <form action="{{route('buscarHora')}}" method="POST" id="selectHoras">
+                            @csrf
+                            @if(isset($diaPreselected))
+                                @if($diaPreselected!=0)
+                                <input type="text" name="diaselected" id="diaselected" style="visibility: hidden" value="{{$diaPreselected}}">
+                                @endif
+                            @endif
+                            <br>
+                            <label for="horaSelected">Hora: </label>
+                            <select name="horaSelected" id="horaSelected" form="selectHoras" class="form-control pepe">
+                                @foreach($horesXDia as $hora)
+                                    <option value="{{$hora["id"]}}">{{$hora->hora_inicio}} - {{$hora->hora_fin}}</option>
+                                @endforeach
+                        </select>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Buscar</button>
+                    </form>
                     </div>
                 </div>
-
-                @if(isset($trobat))
-                    @if($trobat)
-                    <br>
-                    <div class="card">
-                        <div class="card-header">{{$horaSelected->hora_inicio}} - {{$horaSelected->hora_fin}}</div>
-                        <div class="card-body">
-                            <form action="" method="POST">
-                                @csrf
-                                <div style="visibility: hidden">
-                                    <label for="id" style="margin-left:30px">Id: </label><input class="form-control pepe" type="text" value="{{$horaSelected->id}}" name="id" id="id" readonly>
-                                </div>
-                                <label for="nombre" style="margin-left:30px">Hora inici:</label><input required class="form-control pepe" value="{{$horaSelected->hora_inicio}}" type="text" name="hora_inicio" id="hora_inicio" style="margin-left: 10px"><br><br>
-                                <label for="desc" style="margin-left:30px">Hora Final:</label><input required class="form-control pepe" value="{{$horaSelected->hora_fin}}" type="text" name="hora_fin" id="hora_fin" style="margin-left: 10px"><br><br>
-                                <label for="data" style="margin-left:30px">Preu:</label><input required class="form-control pepe" type="number" id="Precio" name="Precio" value="{{$horaSelected->Precio}}"><br><br>
-                                <button type="submit" class="btn btn-primary adminfunc" style="float: left">Modificar</button>
-                            </form>
-                            <form action="" method="POST">
-                                @csrf
-
-                                <button type="submit" class="btn btn-primary adminfunc eliminar">Eliminar</button>
-                                <div style="visibility: hidden">
-                                    <label for="id" style="margin-left:30px">Id: </label><input type="text" value="{{$horaSelected->id}}" name="id" id="id" readonly><br><br>
-                                </div>
-                            </form>
-                            <!--eliminar-->
-
-                        </div>
+                @endif
+                @if(isset($modificat))
+                    @if($modificat)
+                    <div class="alert alert-success text-center">
+                        Hora {{$horaModificada}} modificada!
                     </div>
                     @endif
+                @endif
+                @if(isset($eliminat))
+                    @if($eliminat)
+                    <div class="alert alert-success text-center">
+                        Hora {{$horaEliminada}} eliminada!
+                    </div>
+                    @endif
+                @endif
+                @if(isset($insertat))
+                @if($insertat)
+                <div class="alert alert-success text-center">
+                    Hora {{$horaInsertada}} insertada!
+                </div>
+                @endif
+            @endif
+
+
+                @if(isset($horaTrobada))
+                <br>
+                <div class="card">
+                    <div class="card-header">{{$horaSelected->hora_inicio}} - {{$horaSelected->hora_fin}}</div>
+                    <div class="card-body">
+                        <form action="{{route('modificarHora')}}" method="POST" id="modificarHoras">
+                            @csrf
+                            <div style="visibility: hidden">
+                                <label for="id" style="margin-left:30px">Id: </label><input class="form-control pepe" type="text" value="{{$horaSelected->id}}" name="id" id="id" readonly>
+                            </div>
+                            <label for="horaInici" style="margin-left:10px">Hora inici:</label><input required class="form-control pepe" value="{{$horaSelected->hora_inicio}}" type="time" name="horaInici" id="horaInici" style="margin-left: 10px" required><br><br>
+                            <label for="horaFinal" style="margin-left:10px">Hora Final:</label><input required class="form-control pepe" value="{{$horaSelected->hora_fin}}" type="time" name="horaFinal" id="horaFinal" style="margin-left: 10px" required><br><br>
+                            <label for="preu" style="margin-left:10px">Preu:</label><input required class="form-control pepe" type="number" id="preu" name="preu" value="{{$horaSelected->Precio}}" style="margin-left: 10px" required><br><br>
+                            <button type="submit" class="btn btn-primary adminfunc" style="float: left">Modificar</button>
+                        </form>
+                        <form action="{{route('eliminarHora')}}" method="POST">
+                            @csrf
+
+                            <button type="submit" class="btn btn-primary adminfunc eliminar">Eliminar</button>
+                            <div style="visibility: hidden">
+                                <label for="id" style="margin-left:30px">Id: </label><input type="text" value="{{$horaSelected->id}}" name="id" id="id" readonly><br><br>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 @endif
                 <br>
                 </div>
             </div>
+        </div>
+    </div>
+    <br>
+    <!-- FUNCTION INSERTARHORA IN PROGRESS-->
+    <div class="card">
+        <div class="card-header">Insertar hora:</div>
+        <div class="card-body">
+            <form action="{{route('insertarHora')}}" method="POST" id="insertarHora">
+                @csrf
+                <label for="diaSelected" style="margin-left:10px">Dia setmana: </label>
+                <select name="diaSelected" id="diaSelected" class="form-control pepe" style="margin-left:10px">
+                    <option value="1">Dilluns</option>
+                    <option value="2">Dimarts</option>
+                    <option value="3">Dimecres</option>
+                    <option value="4">Dijous</option>
+                    <option value="5">Divendres</option>
+                </select>
+                <br>
+                <label for="horaInici" style="margin-left:10px">Hora inici:</label><input required class="form-control pepe" type="time" name="horaInici" id="horaInici" style="margin-left: 10px" required><br><br>
+                <label for="horaFinal" style="margin-left:10px">Hora Final:</label><input required class="form-control pepe" type="time" name="horaFinal" id="horaFinal" style="margin-left: 10px" required><br><br>
+                <label for="preu" style="margin-left:10px">Preu:</label><input required class="form-control pepe" type="number" id="preu" name="preu" style="margin-left: 10px" required><br><br>
+                <button type="submit" class="btn btn-primary adminfunc" style="float: left">Insertar</button>
+            </form>
         </div>
     </div>
 </div>

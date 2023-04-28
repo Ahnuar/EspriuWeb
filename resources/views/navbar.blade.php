@@ -18,15 +18,15 @@
                     <!-- Authentication Links -->
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
+                        <a class="nav-link" href="{{ route('home') }}">{{ __('Taulell') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('niu.index') }}">{{ __('Niu') }}</a>
                     </li>
                     
-
-
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('eventos') }}">{{ __('Events') }}</a>
+                    </li>
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
@@ -41,16 +41,15 @@
                         @endif
                     @else
                         <li class="nav-item">
-                            <a  class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
+                            <a class="nav-link" href="{{ route('facturacio') }}">{{ __('Facturacio') }}</a>
                         </li>
-
+                        
+                        
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                {{ __('Sortir') }}
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf

@@ -16,36 +16,63 @@
                     {{ __('Ja estàs enregistrat!') }}
                 </div>
             </div>
+            <br>
             <div class="card">
                 <div class="card-header">Fills:</div>
                 <div class="card-body">
-                    @if(count($hijos)>0)
-                        @foreach($hijos as $hijo)
-                            <div class="card">
-                                <div class="card-header">{{$hijo->nombre}}:</div>
-                                    <div class="card-body">
-                                        <br>
-                                    </div>
-                                </div>
-                            </div>
+
+                    @if(count($hijosPropios)>0)
+                        @foreach($hijosPropios as $hijo)
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Cognoms</th>
+                                    <th scope="col">Correu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    <td>{{$hijo->nombre}}</td>
+                                    <td>{{$hijo->apellidos}}</td>
+                                    <td>{{$hijo->correo}}</td>
+                                    </tr>
+                                </tbody>
+                                </table>
                         @endforeach
                     @endif
-                    @if(count($hijos)==0)
+                    @if(count($hijosPropios)==0)
                         <p>Vosté no té ningún fill enregistrat!</p>
                     @endif
                 </div>
             </div>
+            <br>
+            <div class="card">
+                <div class="card-header">Assignar nen com a fill:</div>
+                    <div class="card-body">
+                        <form action="{{route('assignarHijo')}}" method="POST" id="selectNen">
+                            @csrf
+                            <select name="nenSelected" id="nenSelected" form="selectNen" class="form-control pepe">
+                                @foreach($hijos as $nen)
+                                    <option value="{{$nen["id"]}}">{{$nen->nombre}} {{$nen->apellidos}}</option>
+                                @endforeach
+                            </select>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Assignar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-
-@if($admin)
+    @if($admin)
     @include('adminfunc/gestionadmin')
-@endif
+    @endif
 
 
-@if($monitor)
+    @if($monitor)
     @include('monitorfunc/gestionmonitor')
-@endif
+    @endif
+</div>
 
 @endsection

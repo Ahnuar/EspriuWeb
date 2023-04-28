@@ -43,16 +43,16 @@ class HomeController extends Controller
 
         $dades["eventos"] = Eventos::Proximos();
 
-        $dades["hijos"] = Hijos::HijosPadres($user["id"]);
+        $dades["hijosPropios"] = Hijos::HijosPadres($user["id"]);
+        $dades["hijos"] = Hijos::Nens($user["id"]);
+
         return view('home', $dades);
     }
 
-    public function insertarFill(Request $request){
-        $dades["admin"]=false;
-        $dades["monitor"]=false;
-        
+    public function assignarHijo(Request $request){
         $user=auth()->user();
-        
+        $dades["admin"]=false;
+        $dades["monitor"]=false;     
         if($user["admin"]==1){
             $dades["admin"]=true;
         }
@@ -60,28 +60,15 @@ class HomeController extends Controller
         if($user["monitor"]==1){
             $dades["monitor"]=true;
         }
-        if($request->nombre != "" && $request->apellidos!="" && $request->correo!=""){
-            $fill = new Hijos();
-            $fill["nombre"] = $request->nombre;
-            $fill["apellidos"] = $request->apellidos;
-            $fill["correo"] = $request->correo;
-            $fill->save();
 
-            $fillAmbPare = new HijosPadres();
-            $fillAmbPare["hijos_id"]=$fill->id;
-            $fillAmbPare["user_id"]=$user->id;
-            $fillAmbPare->save();
+        $fillAmbPare = new HijosPadres();
+        $fillAmbPare["hijos_id"]=$request->nenSelected;
+        $fillAmbPare["user_id"]=$user->id;
+        $fillAmbPare->save();
 
-            $dades["creado"]=true;
-            $dades["fillInsertat"] = $fill["nombre"];
-        }else{
-            $dades["creado"]=false;
-        }
-
-
-        $dades["eventos"] = Eventos::Proximos();
-
-        $dades["hijos"] = Hijos::HijosPadres($user["id"]);
-        return view('home',$dades);
+        $dades["hijosPropios"] = Hijos::HijosPadres($user["id"]);
+        $dades["hijos"] = Hijos::Nens($user["id"]);
+        return view('home', $dades);
     }
+
 }

@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Eventos;
 use App\Models\HoraAcogida;
 use Illuminate\Http\Request;
+use App\Models\Hijos;
 
 class adminFuncController extends Controller
 {
@@ -69,10 +70,11 @@ class adminFuncController extends Controller
         $dades["nomuser"]=$email;
         $dades["eventos"] = Eventos::Proximos();
         $usuario= User::buscaruser($email);
-        if($user["admin"==1]){
-            if(!Count($usuario)==0){
+
+        if($user["admin"]){
+            if(count($usuario)>0){
                 if($usuario[0]["monitor"]==0){
-                    
+
                     $dades["success"] = User::hacermonitor($usuario[0]['email']);
                     $dades["monitoruser"] = true;
                     $dades["nomuser"] = $usuario["name"];
@@ -294,5 +296,36 @@ class adminFuncController extends Controller
             $dades["eliminado"]=true;
             $dades["eventos"] = Eventos::Proximos();
             return view('adminfunc/gestioneventos',$dades);
+        }
+
+        public function insertarFill(Request $request){
+            $dades["admin"]=false;
+            $dades["monitor"]=false;
+            
+            $user=auth()->user();
+            
+            if($user["admin"]==1){
+                $dades["admin"]=true;
+            }
+    
+            if($user["monitor"]==1){
+                $dades["monitor"]=true;
+            }
+            if($request->nombre != "" && $request->apellidos!="" && $request->correo!=""){
+                $fill = new Hijos();
+                $fill["nombre"] = $request->nombre;
+                $fill["apellidos"] = $request->apellidos;
+                $fill["correo"] = $request->correo;
+                $fill->save();
+    
+                $dades["creado"]=true;
+                $dades["fillInsertat"] = $fill["nombre"];
+            }else{
+                $dades["creado"]=false;
+            }
+    
+    
+            $dades["eventos"] = Eventos::Proximos();
+            return view('adminfunc/gestionhijos',$dades);
         }
 }

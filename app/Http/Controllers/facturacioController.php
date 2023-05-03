@@ -11,7 +11,7 @@ class facturacioController extends Controller{
     public function index(){
 
         $facturacio = HijosPadresHoras::VerHorasHijo(auth()->user()->id);
-
+        $dades['facturacio']=null;
         if(count($facturacio) > 0)
         {
             $total = 0;

@@ -81,8 +81,9 @@ class HorasAcogidaController extends Controller
     {
     
         $request->validate([
-            'hijo' => 'required|exists:hijos_Padres,hijos_id,user_id,' . auth()->user()->id
+            'hijo' => 'required|exists:hijos_padres,hijos_id,user_id,' . auth()->user()->id
         ]);
+
         try{
             $horaElegida = explode(" ",$request->hora)[1];
             $finhoraElegida = explode(" ",$request->hora)[2];

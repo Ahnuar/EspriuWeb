@@ -22,7 +22,7 @@
                 <div class="card-body">
 
                     @if(count($hijosPropios)>0)
-                        @foreach($hijosPropios as $hijo)
+                        
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -32,14 +32,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($hijosPropios as $hijo)
                                     <tr>
                                     <td>{{$hijo->nombre}}</td>
                                     <td>{{$hijo->apellidos}}</td>
                                     <td>{{$hijo->correo}}</td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                                 </table>
-                        @endforeach
+                        
                     @endif
                     @if(count($hijosPropios)==0)
                         <p>Vosté no té ningún fill enregistrat!</p>
@@ -50,18 +52,36 @@
             <div class="card">
                 <div class="card-header">Assignar nen com a fill:</div>
                     <div class="card-body">
-                        <form action="{{route('assignarHijo')}}" method="POST" id="selectNen">
+                        <form action="{{route('assignarHijo')}}" method="POST">
                             @csrf
-                            <select name="nenSelected" id="nenSelected" form="selectNen" class="form-control pepe">
-                                @foreach($hijos as $nen)
-                                    <option value="{{$nen["id"]}}">{{$nen->nombre}} {{$nen->apellidos}}</option>
-                                @endforeach
-                            </select>
-                            <br>
-                            <button type="submit" class="btn btn-primary">Assignar</button>
+                                <br>
+                                <label for="email" style="margin-left:30px">Email:      </label><input type="text" name="email" id="email" style="margin-left: 10px" required>
+                                
+                                <button type="submit" class="btn btn-primary" style="margin-right:30px; float: right">Assignar</button>
                         </form>
                     </div>
                 </div>
+                @if(isset($success))
+                @if($success)
+                <div class="alert alert-success text-center">
+                    {{$fillAssignat}} assignat!
+                </div>
+                @endif
+                @if(!$success)
+                    @if(isset($fillAssignat))
+                    <div class="alert alert-danger text-center">
+                        Ja t'has assignat com a fill a {{$fillAssignat}}!
+                    </div>
+                    @endif
+                    @if(!isset($fillAssignat))
+                    <div class="alert alert-danger text-center">
+                        Has d'omplir el camp!
+                    </div>
+                    @endif
+                    
+                @endif
+
+            @endif
             </div>
         </div>
     </div>

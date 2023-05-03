@@ -44,15 +44,15 @@ class HomeController extends Controller
         $dades["eventos"] = Eventos::Proximos();
 
         $dades["hijosPropios"] = Hijos::HijosPadres($user["id"]);
-        $dades["hijos"] = Hijos::Nens($user["id"]);
-
         return view('home', $dades);
     }
 
     public function assignarHijo(Request $request){
         $user=auth()->user();
         $dades["admin"]=false;
-        $dades["monitor"]=false;     
+        $dades["monitor"]=false;
+        
+        $email = $request->email;
         if($user["admin"]==1){
             $dades["admin"]=true;
         }
@@ -61,13 +61,27 @@ class HomeController extends Controller
             $dades["monitor"]=true;
         }
 
-        $fillAmbPare = new HijosPadres();
-        $fillAmbPare["hijos_id"]=$request->nenSelected;
-        $fillAmbPare["user_id"]=$user->id;
-        $fillAmbPare->save();
+        $dades["success"]=false;
+        $dades["nomuser"]=$email;
+        $hijo= Hijos::buscarNen($email);
 
+        if($user["admin"]){
+            if(count($hijo)>0){
+                $hijosasignados = Hijos::buscarHijoAsignado($user["id"],$hijo[0]["id"]);
+                if(count($hijosasignados)==0){
+                
+                $fillAmbPare = new HijosPadres();
+                $fillAmbPare["hijos_id"]=$hijo[0]["id"];
+                $fillAmbPare["user_id"]=$user->id;
+                $fillAmbPare->save();
+                $dades["success"]=true;
+                
+                }
+                $dades["fillAssignat"]=$hijo[0]["nombre"];
+            }
+        }
+        
         $dades["hijosPropios"] = Hijos::HijosPadres($user["id"]);
-        $dades["hijos"] = Hijos::Nens($user["id"]);
         return view('home', $dades);
     }
 

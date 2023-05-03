@@ -39,6 +39,14 @@ class HoraAcogida extends Model
         return $query->get();
     }
 
+    public function scopebuscarhoresDia($query, $dia){
+        $query->join('servicios', 'horas_acogida.idservicio', '=', 'servicios.id')
+        ->select('horas_acogida.*')
+        ->where('servicios.nombre','LIKE', '%NIU%',)
+        ->where('horas_acogida.dia_semana','=',$dia);
+        return $query->get();
+    }
+
 
 }
 

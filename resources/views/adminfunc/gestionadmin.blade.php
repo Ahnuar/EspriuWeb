@@ -16,7 +16,11 @@
     
                         <form action="{{route('gestioNiu')}}">
                             <button class="btn btn-primary adminfunc" >Gestió Niu</button>
-                        </form>  
+                        </form>
+                        
+                        <form action="{{route('gestioFills')}}">
+                            <button class="btn btn-primary adminfunc" >Gestió Fills</button>
+                        </form>
                     </div>
                 </div>
             </div>

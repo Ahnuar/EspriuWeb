@@ -28,7 +28,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/lista',[App\Http\Controllers\FacturacioController::class,'lista'])->name('lista');
     
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::post('/home/insertarEvent', [App\Http\Controllers\HomeController::class,'insertarFill'])->name('insertarFill');
+
     
     Route::get('/home/gestioneventos', [App\Http\Controllers\adminFuncController::class, 'index'])->name('gestioneventos');
 
@@ -41,18 +41,25 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/home/gestioneventos/evento/insertar',[App\Http\Controllers\adminFuncController::class, 'insertarEvento'])->name('insertarEvento');
     Route::post('/home/gestioneventos/evento/eliminar',[App\Http\Controllers\adminFuncController::class, 'eliminarEvento'])->name('eliminarEvento');
 
+    Route::post('/home/gestioNiu/horesXDia',[App\Http\Controllers\adminFuncController::class,'buscarHorasXDia'])->name('buscarHorasXDia');
     Route::post('/home/gestioNiu/hora',[App\Http\Controllers\adminFuncController::class,'buscarHora'])->name('buscarHora');
 
-    Route::get('/home/gestioNiu', [App\Http\Controllers\adminFuncController::class, 'mostrarViewGestioNiu'])->name('gestioNiu');
 
-    
+    Route::get('/home/gestioNiu', [App\Http\Controllers\adminFuncController::class, 'mostrarViewGestioNiu'])->name('gestioNiu');
+    Route::post('/home/gestioNiu/hora/modificar', [App\Http\Controllers\adminFuncController::class, 'modificarHora'])->name('modificarHora');
+    Route::post('/home/gestioNiu/hora/eliminar',[App\Http\Controllers\adminFuncController::class, 'eliminarHora'])->name('eliminarHora');
+    Route::post('/home/gestioNiu/hora/insertar', [App\Http\Controllers\adminFuncController::class,'insertarHora'])->name('insertarHora');
 
     Route::post('/evento/{evento}/signup', [App\Http\Controllers\EventosController::class,'signup'])->name('evento.signup');
     
     Route::get('/acogida', [App\Http\Controllers\HorasAcogidaController::class, 'index'])->name('acogida.index')->middleware('auth');
     Route::post('/acogida', [App\Http\Controllers\HorasAcogidaController::class, 'apuntar'])->name('acogida.apuntar')->middleware('auth');  
+    
     Route::get('/niu', [App\Http\Controllers\HorasAcogidaController::class, 'index'])->name('niu.index')->middleware('auth');
     Route::post('/niu', [App\Http\Controllers\HorasAcogidaController::class, 'apuntar'])->name('niu.apuntar')->middleware('auth');
     Route::get('/niu/apuntar', [App\Http\Controllers\HorasAcogidaController::class, 'show'])->name('apuntar.show')->middleware('auth');
 
+    Route::get('/home/gestioFills',[App\Http\Controllers\adminFuncController::class, 'mostrarViewGestioFills'])->name('gestioFills');
+    Route::post('/home/gestioFills/insertar', [App\Http\Controllers\adminFuncController::class,'insertarFill'])->name('insertarFill');
+    Route::post('home/assignarFill',[App\Http\Controllers\HomeController::class, 'assignarHijo'])->name('assignarHijo');
 });

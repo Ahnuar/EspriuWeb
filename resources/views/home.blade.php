@@ -16,19 +16,83 @@
                     {{ __('Ja estàs enregistrat!') }}
                 </div>
             </div>
+            <br>
+            <div class="card">
+                <div class="card-header">Fills:</div>
+                <div class="card-body">
+
+                    @if(count($hijosPropios)>0)
+                        
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Cognoms</th>
+                                    <th scope="col">Correu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($hijosPropios as $hijo)
+                                    <tr>
+                                    <td>{{$hijo->nombre}}</td>
+                                    <td>{{$hijo->apellidos}}</td>
+                                    <td>{{$hijo->correo}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                                </table>
+                        
+                    @endif
+                    @if(count($hijosPropios)==0)
+                        <p>Vosté no té ningún fill enregistrat!</p>
+                    @endif
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-header">Assignar nen com a fill:</div>
+                    <div class="card-body">
+                        <form action="{{route('assignarHijo')}}" method="POST">
+                            @csrf
+                                <br>
+                                <label for="email" style="margin-left:30px">Email:      </label><input type="text" name="email" id="email" style="margin-left: 10px" required>
+                                
+                                <button type="submit" class="btn btn-primary" style="margin-right:30px; float: right">Assignar</button>
+                        </form>
+                    </div>
+                </div>
+                @if(isset($success))
+                @if($success)
+                <div class="alert alert-success text-center">
+                    {{$fillAssignat}} assignat!
+                </div>
+                @endif
+                @if(!$success)
+                    @if(isset($fillAssignat))
+                    <div class="alert alert-danger text-center">
+                        Ja t'has assignat com a fill a {{$fillAssignat}}!
+                    </div>
+                    @endif
+                    @if(!isset($fillAssignat))
+                    <div class="alert alert-danger text-center">
+                        Has d'omplir el camp!
+                    </div>
+                    @endif
+                    
+                @endif
+
+            @endif
+            </div>
         </div>
     </div>
-</div>
-
-@include('hijos/gestionhijos')
-
-@if($admin)
+    @if($admin)
     @include('adminfunc/gestionadmin')
-@endif
+    @endif
 
 
-@if($monitor)
+    @if($monitor)
     @include('monitorfunc/gestionmonitor')
-@endif
+    @endif
+</div>
 
 @endsection

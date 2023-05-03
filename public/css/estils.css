@@ -56,7 +56,8 @@
 
 html{
     background-color: #ECECEC;
-} 
+}
+
 #app{
     background-color: #ECECEC;
 }
@@ -71,3 +72,5 @@ html{
 @media (min-width: 728px){
     .pepe{width: 50%;}
 }
+
+

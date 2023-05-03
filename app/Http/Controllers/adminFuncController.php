@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Eventos;
 use App\Models\HoraAcogida;
 use Illuminate\Http\Request;
+use App\Models\Hijos;
 
 class adminFuncController extends Controller
 {
@@ -50,6 +51,10 @@ class adminFuncController extends Controller
         return view('adminfunc/gestiondemonitores');
     }
 
+    public function mostrarViewGestioFills(){
+        return view('adminfunc/gestionhijos');
+    }
+
     public function mostrarViewGestioNiu(){
         $dades["horas"] = HoraAcogida::HoresNiuModificar();
         return view('adminfunc/gestionniu',$dades);
@@ -65,10 +70,11 @@ class adminFuncController extends Controller
         $dades["nomuser"]=$email;
         $dades["eventos"] = Eventos::Proximos();
         $usuario= User::buscaruser($email);
-        if($user["admin"==1]){
-            if(!Count($usuario)==0){
+
+        if($user["admin"]){
+            if(count($usuario)>0){
                 if($usuario[0]["monitor"]==0){
-                    
+
                     $dades["success"] = User::hacermonitor($usuario[0]['email']);
                     $dades["monitoruser"] = true;
                     $dades["nomuser"] = $usuario["name"];
@@ -92,16 +98,36 @@ class adminFuncController extends Controller
         return view('adminfunc/gestioneventos',$dades);
     }
 
-    public function buscarHora(Request $request){
-        //retorna null
-        $hora = HoraAcogida::find($request->horaSelected);
-        $dades["trobat"]=true;
+    public function buscarHorasXDia(Request $request){
+       
+        $horas = HoraAcogida::buscarhoresDia($request->diaSelected);
+        if(count($horas)>0){
+            $dades["horesXDia"]=$horas;
+            $dades["trobat"]=true;
+        }
+        
         $user=auth()->user();
         $dades["monitor"]=$user["monitor"];
         $dades["admin"]=$user["admin"];
-        $dades["horaSelected"]=$hora;
+        $dades["diaPreselected"]=$request->diaSelected;
     
-        $dades["horas"] = HoraAcogida::HoresNiuModificar();
+        //$dades["horas"] = HoraAcogida::HoresNiuModificar();
+        return view('adminfunc/gestionniu',$dades);
+    }
+
+    public function buscarHora(Request $request){
+        $hora = HoraAcogida::find($request->horaSelected);
+        $dades["horaSelected"] = $hora;
+        $dades["horaTrobada"]=true;
+
+        $user=auth()->user();
+        $dades["monitor"]=$user["monitor"];
+        $dades["admin"]=$user["admin"];
+
+        $dades["diaPreselected"]=$hora["dia_semana"];
+        $horas = HoraAcogida::buscarhoresDia($request->diaselected);
+        $dades["horesXDia"]=$horas;
+        $dades["trobat"]=true;
         return view('adminfunc/gestionniu',$dades);
     }
 
@@ -132,6 +158,106 @@ class adminFuncController extends Controller
         return view('adminfunc/gestioneventos',$dades);
     }
 
+
+    //mas tarde
+    public function modificarHora(Request $request){
+        $hora = HoraAcogida::find($request->id);
+        $hora["hora_inicio"] = $request->horaInici;
+        $hora["hora_fin"] = $request->horaFinal;
+        $hora["Precio"] = $request->preu;
+        $hora->save();
+
+        $user=auth()->user();
+        $dades["monitor"]=$user["monitor"];
+        $dades["admin"]=$user["admin"];
+        $dades["modificat"]=true;
+        switch ($hora["dia_semana"]) {
+            case 1:
+                $dades["horaModificada"]="Dilluns ".$hora["hora_inicio"] . " - " . $hora["hora_fin"];
+                break;
+            case 2:
+                $dades["horaModificada"]="Dimarts ".$hora["hora_inicio"] . " - " . $hora["hora_fin"];
+                break;
+            case 3:
+                $dades["horaModificada"]="Dimecres ".$hora["hora_inicio"] . " - " . $hora["hora_fin"];
+                break;
+            case 4:
+                $dades["horaModificada"]="Dijous ".$hora["hora_inicio"] . " - " . $hora["hora_fin"];
+                break;
+            case 5:
+                $dades["horaModificada"]="Divendres ".$hora["hora_inicio"] . " - " . $hora["hora_fin"];
+                break;
+          }
+        
+
+        return view('adminfunc/gestionniu',$dades);
+    }
+
+    public function eliminarHora(Request $request){
+        $hora = HoraAcogida::find($request->id);
+        $hora->delete();
+
+        $user=auth()->user();
+        $dades["monitor"]=$user["monitor"];
+        $dades["admin"]=$user["admin"];
+        $dades["eliminat"]=true;
+        switch ($hora["dia_semana"]) {
+            case 1:
+                $dades["horaEliminada"]="Dilluns ".$hora["hora_inicio"] . " - " . $hora["hora_fin"];
+                break;
+            case 2:
+                $dades["horaEliminada"]="Dimarts ".$hora["hora_inicio"] . " - " . $hora["hora_fin"];
+                break;
+            case 3:
+                $dades["horaEliminada"]="Dimecres ".$hora["hora_inicio"] . " - " . $hora["hora_fin"];
+                break;
+            case 4:
+                $dades["horaEliminada"]="Dijous ".$hora["hora_inicio"] . " - " . $hora["hora_fin"];
+                break;
+            case 5:
+                $dades["horaEliminada"]="Divendres ".$hora["hora_inicio"] . " - " . $hora["hora_fin"];
+                break;
+          }
+        
+
+        return view('adminfunc/gestionniu',$dades);
+    }
+
+    //acabar funcion
+    public function insertarHora(Request $request){
+        $user=auth()->user();
+        $dades["monitor"]=$user["monitor"];
+        $dades["admin"]=$user["admin"];
+    
+        $hora = new HoraAcogida();
+        $hora["dia_semana"] = $request->diaSelected;
+        $hora["idservicio"] = 1;
+        $hora["hora_inicio"] = $request->horaInici;
+        $hora["hora_fin"] = $request->horaFinal;
+        $hora["Precio"] = $request->preu;
+
+        $hora->save();
+        $dades["insertat"]=true;
+        switch ($hora["dia_semana"]) {
+            case 1:
+                $dades["horaInsertada"]="Dilluns ".$hora["hora_inicio"] . " - " . $hora["hora_fin"];
+                break;
+            case 2:
+                $dades["horaInsertada"]="Dimarts ".$hora["hora_inicio"] . " - " . $hora["hora_fin"];
+                break;
+            case 3:
+                $dades["horaInsertada"]="Dimecres ".$hora["hora_inicio"] . " - " . $hora["hora_fin"];
+                break;
+            case 4:
+                $dades["horaInsertada"]="Dijous ".$hora["hora_inicio"] . " - " . $hora["hora_fin"];
+                break;
+            case 5:
+                $dades["horaInsertada"]="Divendres ".$hora["hora_inicio"] . " - " . $hora["hora_fin"];
+                break;
+          }
+        return view('adminfunc/gestionniu',$dades);
+    }
+
     public function insertarEvento(Request $request){
         $user=auth()->user();
         $dades["monitor"]=$user["monitor"];
@@ -156,6 +282,8 @@ class adminFuncController extends Controller
         $dades["eventos"] = Eventos::Proximos();
         return view('adminfunc/gestioneventos',$dades);
         }
+
+
     
         public function eliminarEvento(Request $request){
             $user=auth()->user();
@@ -168,5 +296,36 @@ class adminFuncController extends Controller
             $dades["eliminado"]=true;
             $dades["eventos"] = Eventos::Proximos();
             return view('adminfunc/gestioneventos',$dades);
+        }
+
+        public function insertarFill(Request $request){
+            $dades["admin"]=false;
+            $dades["monitor"]=false;
+            
+            $user=auth()->user();
+            
+            if($user["admin"]==1){
+                $dades["admin"]=true;
+            }
+    
+            if($user["monitor"]==1){
+                $dades["monitor"]=true;
+            }
+            if($request->nombre != "" && $request->apellidos!="" && $request->correo!=""){
+                $fill = new Hijos();
+                $fill["nombre"] = $request->nombre;
+                $fill["apellidos"] = $request->apellidos;
+                $fill["correo"] = $request->correo;
+                $fill->save();
+    
+                $dades["creado"]=true;
+                $dades["fillInsertat"] = $fill["nombre"];
+            }else{
+                $dades["creado"]=false;
+            }
+    
+    
+            $dades["eventos"] = Eventos::Proximos();
+            return view('adminfunc/gestionhijos',$dades);
         }
 }

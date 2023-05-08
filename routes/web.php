@@ -50,7 +50,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/home/gestioNiu/hora/eliminar',[App\Http\Controllers\adminFuncController::class, 'eliminarHora'])->name('eliminarHora');
     Route::post('/home/gestioNiu/hora/insertar', [App\Http\Controllers\adminFuncController::class,'insertarHora'])->name('insertarHora');
 
-    Route::post('/evento/{evento}/signup', [App\Http\Controllers\EventosController::class,'signup'])->name('evento.signup');
+    Route::post('/evento/signup', [App\Http\Controllers\EventosController::class,'signup'])->name('evento.signup');
     
     Route::get('/acogida', [App\Http\Controllers\HorasAcogidaController::class, 'index'])->name('acogida.index')->middleware('auth');
     Route::post('/acogida', [App\Http\Controllers\HorasAcogidaController::class, 'apuntar'])->name('acogida.apuntar')->middleware('auth');  

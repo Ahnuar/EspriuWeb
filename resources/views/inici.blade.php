@@ -10,9 +10,12 @@
           <div class="carousel-item active">
             <img src="{{ URL::asset('/img/imagen_classe.jpg') }}" class="d-block w-100" alt="First">
           </div>
-          <div class="carousel-item">
-            {{-- <img src="{{$eventos[1]->imagen}}" class="d-block w-100 " alt="Second"> --}}
-          </div>
+          <!-- Insertar imagenes en base64 controlado por javascript-->
+          @foreach($eventos as $evento)
+            <div class="carousel-item">
+              <img src="{{$evento->imagen}}" class="d-block w-100">
+            </div>
+          @endforeach
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>

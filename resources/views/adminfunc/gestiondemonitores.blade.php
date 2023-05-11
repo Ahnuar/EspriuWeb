@@ -35,6 +35,34 @@
                     @endif
                 </div>
             </div>
+            <br>
+            @if(isset($monitores) && $monitores)
+            <div class="card">
+                <div class="card-header">Monitors actuals:</div>
+                <div class="card-body"> 
+                    
+                        
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Correu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($monitores as $monitor)
+                            <tr>
+                            <td>{{$monitor->name}}</td>
+                            <td>{{$monitor->email}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                        </table>
+                
+            
+                </div>
+            </div>
+            @endif
         </div>
     </div>
 </div>

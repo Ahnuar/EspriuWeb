@@ -49,10 +49,11 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function scopeindex($query){
-        return $query->select('name')->where('monitor',true)->get();
+        return $query->select('*')->where('monitor',true)->get();
     }
 
     public function scopebuscaruser($query, $correo){
+        dd($query->select('*')->where('email',$correo)->get());
         return $query->select('*')->where('email',$correo)->get();
     }
 

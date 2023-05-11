@@ -47,7 +47,8 @@ class adminFuncController extends Controller
     }
 
     public function mostrarviewmonitores(){
-        return view('adminfunc/gestiondemonitores');
+        $dades["monitores"]=User::index();
+        return view('adminfunc/gestiondemonitores',$dades);
     }
 
     public function mostrarViewGestioFills(){
@@ -310,17 +311,20 @@ class adminFuncController extends Controller
             if($user["monitor"]==1){
                 $dades["monitor"]=true;
             }
+            $dades["creado"]=false;
             if($request->nombre != "" && $request->apellidos!="" && $request->correo!=""){
                 $fill = new Hijos();
                 $fill["nombre"] = $request->nombre;
                 $fill["apellidos"] = $request->apellidos;
                 $fill["correo"] = $request->correo;
-                $fill->save();
-    
-                $dades["creado"]=true;
+                if(!Hijos::buscarNen($fill["correo"])){
+
+                    $fill->save();
+        
+                    $dades["creado"]=true;
+                }
+
                 $dades["fillInsertat"] = $fill["nombre"];
-            }else{
-                $dades["creado"]=false;
             }
     
     

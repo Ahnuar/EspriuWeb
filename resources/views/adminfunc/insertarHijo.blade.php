@@ -17,14 +17,21 @@
     </div>
 </div>
 @if(isset($creado))
-@if($creado)
-<div class="alert alert-success text-center">
-    Infant {{$fillInsertat}} insertat!
-</div>
-@endif
-@if(!$creado)
-<div class="alert alert-danger text-center">
-    S'han d'omplir tots els camps!
-</div>
-@endif
+    @if($creado)
+    <div class="alert alert-success text-center">
+        Infant {{$fillInsertat}} insertat!
+    </div>
+    @endif
+    @if(!$creado)
+        @if(isset($fillInsertat))
+        <div class="alert alert-danger text-center">
+            Infant amb correu ja inserit!
+        </div>
+        @endif
+        @if(!isset($fillInsertat))
+        <div class="alert alert-danger text-center">
+            S'han d'omplir tots els camps!
+        </div>
+        @endif
+    @endif
 @endif

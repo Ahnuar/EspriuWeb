@@ -37,7 +37,7 @@ class HijosPadresHoras extends Model
                     ->selectRaw('hijos_padres_horas.*,horas_acogida.Precio,hijos.nombre,hijos.apellidos,hijos.correo')
                     ->join('hijos','hijos_padres_horas.idhijo', '=', 'hijos.id')
                     ->join('horas_acogida', 'hijos_padres_horas.idhora', '=', 'horas_acogida.id')
-                    ->where('hijos_padres_horas.fecha =?', [$fecha])
+                    ->where('hijos_padres_horas.fecha',$fecha)
                     ->get();
     }
     

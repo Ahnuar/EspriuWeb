@@ -4,7 +4,14 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">Funcions de Monitor:</div>
-                <br>
+                <div class="card-body">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <form action="{{route('lista')}}">
+                            <button class="btn btn-primary adminfunc" >Passar llista</button>
+                        </form>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

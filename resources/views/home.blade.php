@@ -18,7 +18,7 @@
             </div>
             <br>
             <div class="card">
-                <div class="card-header">Fills:</div>
+                <div class="card-header">Infants assignats:</div>
                 <div class="card-body">
 
                     @if(count($hijosPropios)>0)
@@ -44,13 +44,13 @@
                         
                     @endif
                     @if(count($hijosPropios)==0)
-                        <p>Vosté no té ningún fill enregistrat!</p>
+                        <p>Vosté no té ningún infant enregistrat!</p>
                     @endif
                 </div>
             </div>
             <br>
             <div class="card">
-                <div class="card-header">Assignar nen com a fill:</div>
+                <div class="card-header">Assignar infant:</div>
                     <div class="card-body">
                         <form action="{{route('assignarHijo')}}" method="POST">
                             @csrf
@@ -70,14 +70,15 @@
                 @if(!$success)
                     @if(isset($fillAssignat))
                     <div class="alert alert-danger text-center">
-                        Ja t'has assignat com a fill a {{$fillAssignat}}!
+                        Ja t'has assignat a {{$fillAssignat}}!
                     </div>
                     @endif
                     @if(!isset($fillAssignat))
                     <div class="alert alert-danger text-center">
-                        Has d'omplir el camp!
+                        No s'ha trobat l'email que ha introduit!
                     </div>
                     @endif
+
                     
                 @endif
 

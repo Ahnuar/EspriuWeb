@@ -7,6 +7,12 @@
 <div class="card">
     <div class="card-header">Modificar i Eliminar Events:</div>
     <div class="card-body">
+        @if(count($eventos)==0)  
+        No hi han events actualment!
+        </div>
+    </div>
+        @endif
+        @if(count($eventos)>0)
         <div class="card">
             <div class="card-header">Mètode de búsqueda:</div>
             <div class="card-body">
@@ -55,6 +61,7 @@
                 @endif
             @endif
         <br>
+        
         @if(isset($trobat))
             @if($trobat)
             <div class="card">
@@ -115,6 +122,7 @@
             <br>
             @endforeach
         
+        @endif
         @endif
     </div>
 

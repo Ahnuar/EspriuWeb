@@ -19,7 +19,7 @@
                         </form>
                         
                         <form action="{{route('gestioFills')}}">
-                            <button class="btn btn-primary adminfunc" >Gestió Fills</button>
+                            <button class="btn btn-primary adminfunc" >Gestió Infants</button>
                         </form>
                     </div>
                 </div>

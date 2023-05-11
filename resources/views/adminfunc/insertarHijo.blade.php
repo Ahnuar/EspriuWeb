@@ -1,6 +1,6 @@
 
 <div class="card">
-    <div class="card-header">Insertar Fill:</div>
+    <div class="card-header">Insertar Infant:</div>
     <div class="card-body">  
         <form action="{{route('insertarFill')}}" method="POST">
             @csrf
@@ -19,7 +19,7 @@
 @if(isset($creado))
 @if($creado)
 <div class="alert alert-success text-center">
-    Fill {{$fillInsertat}} insertat!
+    Infant {{$fillInsertat}} insertat!
 </div>
 @endif
 @if(!$creado)

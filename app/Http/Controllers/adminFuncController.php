@@ -41,9 +41,8 @@ class adminFuncController extends Controller
         if($user["monitor"]==1){
             $dades["monitor"]=true;
         }
-
+        
         $dades["eventos"] = Eventos::Proximos();
-
         return view('adminfunc/gestioneventos', $dades);
     }
 

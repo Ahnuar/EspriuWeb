@@ -19,16 +19,15 @@ class HijosPadresHoras extends Model
                     ->get();
     }
 
-    public function scopeVerHorasHijo($query, $idpadre){
-        $mes_actual = now()->month;
+    public function scopeVerHorasHijo($query,$idpadre,$mes){
 
         return
                 $query
                     ->selectRaw('hijos_padres_horas.*,horas_acogida.Precio,hijos.nombre,hijos.apellidos,hijos.correo')
                     ->join('hijos','hijos_padres_horas.idhijo', '=', 'hijos.id')
                     ->join('horas_acogida', 'hijos_padres_horas.idhora', '=', 'horas_acogida.id')
-                    ->where('hijos_padres_horas.idpadre', $idpadre)
-                    ->whereRaw('month(hijos_padres_horas.created_at) = ?', [$mes_actual])
+                    ->where('hijos_padres_horas.idpadre',$idpadre)
+                    ->whereRaw('MONTH(hijos_padres_horas.fecha) = ?', [$mes])
                     ->get();
     }
 
@@ -38,7 +37,7 @@ class HijosPadresHoras extends Model
                     ->selectRaw('hijos_padres_horas.*,horas_acogida.Precio,hijos.nombre,hijos.apellidos,hijos.correo')
                     ->join('hijos','hijos_padres_horas.idhijo', '=', 'hijos.id')
                     ->join('horas_acogida', 'hijos_padres_horas.idhora', '=', 'horas_acogida.id')
-                    ->where('hijos_padres_horas.fecha', $fecha)
+                    ->where('hijos_padres_horas.fecha =?', [$fecha])
                     ->get();
     }
     

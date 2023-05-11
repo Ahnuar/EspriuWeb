@@ -1,10 +1,35 @@
-@extends('inici')
+@extends('layouts.app')
 
 @section('content')
 
-    @if(isset($facturacio) && count($facturacio) > 0)
+    <div class="container">
+        <div class="col-12">
+            <h1>Facturació</h1>
+        </div>
+        <div class="col-12">
+            <label for="mes">Mes</label>
+            <select name="mes" id="mes">
+                <option value="1">Gener</option>
+                <option value="2">Febrer</option>
+                <option value="3">Març</option>
+                <option value="4">Abril</option>
+                <option value="5">Maig</option>
+                <option value="6">Juny</option>
+                <option value="7">Juliol</option>
+                <option value="8">Agost</option>
+                <option value="9">Septembre</option>
+                <option value="10">Octubre</option>
+                <option value="11">Novembre</option>
+                <option value="12">Decembre</option>
+            </select>
+        </div>
+    </div>
+
+
+
         <div class="container">
             <div class="row">
+                
                 <div class="col-12">
                     <table class="table">
                         <thead>
@@ -17,28 +42,16 @@
                                 <th scope="col">Preu</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach($facturacio as $factura)
-                            <tr>
-                                    <td>{{ $factura->nombre }}</td>
-                                    <td>{{ $factura->apellidos }}</td>
-                                    <td>{{ $factura->fecha }}</td>
-                                    <td>{{ $factura->hora_inicio }}</td>
-                                    <td>{{ $factura->hora_fin }}</td>
-                                    <td>{{ $factura->Precio }}</td>
-                                </tr>
-                            @endforeach
-                            <tr>
-                                <td colspan="5">Total</td>
-                                <td>{{ $facturacio->sum('Precio') }}</td>
-                            </tr>
-                        </tbody>
 
                     </table>
                 </div>
             </div>
         </div>
-    @endif  
+
     
+        @section('script')
+        <script src="{{ asset('js/facturacio.js') }}" ></script>
+    @endsection 
 @endsection
+
 

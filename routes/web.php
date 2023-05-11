@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes(['verify' => true]);
-Route::fallback(function () {
+/* Route::fallback(function () {
     return redirect()->route('inici');
-}); 
+});  */
 
 Route::get('/',[App\Http\Controllers\IniciController::class, 'index'])->name('inici');
 
@@ -62,4 +62,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/home/gestioFills',[App\Http\Controllers\adminFuncController::class, 'mostrarViewGestioFills'])->name('gestioFills');
     Route::post('/home/gestioFills/insertar', [App\Http\Controllers\adminFuncController::class,'insertarFill'])->name('insertarFill');
     Route::post('home/assignarFill',[App\Http\Controllers\HomeController::class, 'assignarHijo'])->name('assignarHijo');
+
+    Route::get('/obtenerFacturacion{mes}',  [App\Http\Controllers\facturacioController::class, 'obtenerFacturacion'])->name('datos.Facturacion');
+
+
 });

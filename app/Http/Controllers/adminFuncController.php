@@ -52,7 +52,8 @@ class adminFuncController extends Controller
     }
 
     public function mostrarViewGestioFills(){
-        return view('adminfunc/gestionhijos');
+        $dades["Infants"]=Hijos::index();
+        return view('adminfunc/gestionhijos', $dades);
     }
 
     public function mostrarViewGestioNiu(){
@@ -303,7 +304,7 @@ class adminFuncController extends Controller
             $dades["monitor"]=false;
             
             $user=auth()->user();
-            
+            $dades["Infants"]=Hijos::index();
             if($user["admin"]==1){
                 $dades["admin"]=true;
             }
@@ -317,8 +318,8 @@ class adminFuncController extends Controller
                 $fill["nombre"] = $request->nombre;
                 $fill["apellidos"] = $request->apellidos;
                 $fill["correo"] = $request->correo;
-                if(!Hijos::buscarNen($fill["correo"])){
-
+                if(Count(Hijos::buscarNen($fill["correo"]))==0){
+                    
                     $fill->save();
         
                     $dades["creado"]=true;

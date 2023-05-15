@@ -4,20 +4,19 @@
   <div class="row">
     <div class="col-2"></div>
     <div class="col-md-8 col-sm-12">
-      <h2>Pròxims Events:</h2>  
+      <h2>Benvingut/da a EspriuWeb!</h2>  
       <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img src="{{ URL::asset('/img/imagen_classe.jpg') }}" class="d-block w-100" alt="First">
           </div>
           <!-- Insertar imagenes en base64 controlado por javascript-->
-          @if(isset($eventos) && $eventos)
-            @foreach($eventos as $evento)
-              <div class="carousel-item">
-                <img src="{{$evento->imagen}}" class="d-block w-100">
-              </div>
-            @endforeach
-          @endif
+            <div class="carousel-item">
+              <img src="{{ URL::asset('/img/unnamed.jpg') }}" class="d-block w-100 carrusel">
+            </div>
+            <div class="carousel-item">
+              <img src="{{ URL::asset('/img/santJordi.jpeg') }}" class="d-block w-100 carrusel">
+            </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -30,9 +29,7 @@
         
       </div>
     </div>
-  </div>
-  <button class="btn btn-primary col-md-2 col-sm-4" style="text-align: center; margin-inline: 40%; margin-top: 5px">Inscriure'm</button>
-
+  </div><br>
   <div class="container  mt-5 font-weight-light">
     <div class="row margin-bottom-50">
               <div class="col-12 col-md-4"> 

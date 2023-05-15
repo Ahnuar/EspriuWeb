@@ -60,7 +60,7 @@ class facturacioController extends Controller{
             }else{
                 $dades['facturacio'] = null;
             }
-    
+            //$dades["eventHoras"]=
             return view('/pagos/lista',$dades);
         }else{
             return redirect('/home');

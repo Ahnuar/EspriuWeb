@@ -11,6 +11,10 @@ class Hijos extends Model
 
     protected $table = 'hijos';
 
+    public function scopeIndex($query){
+        return $query->get();
+    }
+
     public function scopeHijosPadres($query, $id)
     {
         $query->join('hijos_padres', 'hijos_padres.hijos_id', '=', 'hijos.id')

@@ -37,6 +37,10 @@ class EventosController extends Controller
 
     public function signup(Request $request)
     {
+        $request->validate([
+            'selectHijo' => 'required|exists:hijos_padres,hijos_id,user_id,' . auth()->user()->id
+        ]);
+
         $user=auth()->user();
         $inscripcions =EventosUser::BuscarInscripcio($request->idEvento,$request->selectHijo);
         $Hijo = Hijos::find($request->selectHijo);

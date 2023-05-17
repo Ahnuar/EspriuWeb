@@ -14,7 +14,7 @@
                         <thead>
                             <tr>
                             <th scope="col">Nom</th>
-                            <th scope="col">Cognoms</th>
+                            <th class="d-none d-md-block" scope="col">Cognoms</th>
                             <th scope="col">Correu</th>
                             </tr>
                         </thead>
@@ -22,7 +22,7 @@
                             @foreach($Infants as $Infant)
                             <tr>
                             <td>{{$Infant->nombre}}</td>
-                            <td>{{$Infant->apellidos}}</td>
+                            <td class="d-none d-md-block">{{$Infant->apellidos}}</td>
                             <td>{{$Infant->correo}}</td>
                             </tr>
                             @endforeach

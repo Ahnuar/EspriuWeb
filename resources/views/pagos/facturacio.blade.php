@@ -51,6 +51,10 @@
     
         @section('script')
         <script src="{{ asset('js/facturacio.js') }}" ></script>
+
+        <script>
+            
+            </script>
     @endsection 
 @endsection
 

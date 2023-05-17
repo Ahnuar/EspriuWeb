@@ -73,7 +73,10 @@ class HorasAcogidaController extends Controller
 
         $hijos = Hijos::HijosPadres(auth()->user()->id);
         $id = $request->query("id");
-        return view('niu.apuntar',compact('eventHoras','id','fechas','hijos'));
+
+        $horas = HoraAcogida::VerHorasNiu();
+        
+        return view('niu.apuntar',compact('eventHoras','id','fechas','hijos','horas'));
     }
 
 
@@ -81,7 +84,7 @@ class HorasAcogidaController extends Controller
     {
     
         $request->validate([
-            'hijo' => 'required|exists:hijos_padres,hijos_id,user_id,' . auth()->user()->id
+            'Child' => 'required|exists:hijos_padres,hijos_id,user_id,' . auth()->user()->id
         ]);
 
         try{

@@ -30,21 +30,14 @@
       </div>
     </div>
   </div><br>
-  <div class="container  mt-5 font-weight-light">
+  <div class="container mt-5">
     <div class="row margin-bottom-50">
               <div class="col-12 col-md-4"> 
-                <div class="div_pr" style="min-height: 40%">
                   <img class="img-fluid margin-bottom-15" src="{{ URL::asset('/img/AFA_Logo.png') }}" alt="AFA">
-                  <div class="div_btn">
-                    
-                  </div>
-                </div>
-                <a class="btn_1" href="https://afasalvadorespriu.blogspot.com/">Més Informació</a> 
-                <p></p><p>Treballem amb l'ajuda de l' <strong><span style="color: #33cccc;">AFA</span>.</strong> De l'escola <strong><span style="color: #33cccc;">Salvador Espriu</span>.</strong></p><p>
-                  </p> 
-                </div>
-
-              <div class="col-12 col-md-6 col-xl-4 "> 
+                  <a class="btn_1" href="https://afasalvadorespriu.blogspot.com/">Més Informació</a> 
+                  <p>Treballem amb l'ajuda de l' <strong><span style="color: #33cccc;">AFA</span>.</strong> De l'escola <strong><span style="color: #33cccc;">Salvador Espriu</span>.</strong></p>
+              </div>
+              <div class="col-12 col-md-4"> 
                       <div class="div_pr" style="min-height: 40%">
                           <img class="img-fluid margin-bottom-15" src="https://agora.xtec.cat/ceipespriu-granollers/wp-content/uploads/usu780/2022/11/IMG_20221118_103613.jpg" alt="Niu">
                       
@@ -55,7 +48,7 @@
                           <a class="btn_1" href="{{route('acogida.index')}}">Més Informació</a>
                                 <p></p><p>El nostre niu es el millor! Inscriu'te</p><p>
                   </p></div>
-              <div class="col-12 col-md-6 col-xl-4 "> 
+              <div class="col-12 col-md-4"> 
                       <div class="div_pr" style="min-height: 40%">
               <img class="img-fluid margin-bottom-15" src="https://www.granollers.cat/sites/default/files/Escoles/dsc01862_cmyk.jpg" alt="Escola Espriu">
                           </div>

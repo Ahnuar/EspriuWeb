@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Eventos;
 use App\Models\Hijos;
 use App\Models\HijosPadres;
+use App\Models\HijosPadresHoras;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -82,4 +83,39 @@ class HomeController extends Controller
         return view('home', $dades);
     }
 
+    
+    public function desassignarHijo(Request $request){
+        $user=auth()->user();
+        $dades["admin"]=false;
+        $dades["monitor"]=false;
+        
+        $email = $request->email;
+        if($user["admin"]==1){
+            $dades["admin"]=true;
+        }
+
+        if($user["monitor"]==1){
+            $dades["monitor"]=true;
+        }
+
+        $dades["aconseguit"]=false;
+        $dades["nomuser"]=$email;
+        $hijo= Hijos::buscarNen($email);
+        if(count($hijo)>0){
+            $hijosasignados = Hijos::buscarHijoAsignado($user["id"],$hijo[0]["id"]);
+            if(count($hijosasignados)!=0){
+                $hijosasignadoshoras=HijosPadresHoras::VerApuntadosGlobales($user["id"],$hijo[0]["id"]);
+                if(count($hijosasignadoshoras)==0){
+                    $hijosasignados[0]->delete();
+                    $dades["aconseguit"]=true;
+                } else{
+                    $dades["fillAlNiu"]=true;
+                }           
+            }
+            $dades["filldesAssignat"]=$hijo[0]["nombre"];
+        }
+        
+        $dades["hijosPropios"] = Hijos::HijosPadres($user["id"]);
+        return view('home', $dades);
+    }
 }

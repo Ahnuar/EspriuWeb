@@ -83,6 +83,36 @@
                 @endif
 
             @endif
+            <br>
+            <!-- Desassignar no funciona per foreign key-->
+            <div class="card">
+                <div class="card-header">Desassignar infant:</div>
+                    <div class="card-body">
+                        <form action="{{route('desassignarHijo')}}" method="POST">
+                            @csrf
+                                <br>
+                                <label for="email" style="margin-left:30px">Email:      </label><input type="text" name="email" id="email" style="margin-left: 10px" required>
+                                
+                                <button type="submit" class="btn btn-primary" style="margin-right:30px; float: right">Desassignar</button>
+                        </form>
+                    </div>
+                </div>
+                @if(isset($aconseguit))
+                @if($aconseguit)
+                <div class="alert alert-success text-center">
+                    {{$filldesAssignat}} desassignat!
+                </div>
+                @endif
+                @if(!$aconseguit)
+                @if(isset($fillAlNiu))
+                <div class="alert alert-danger text-center">
+                    El vostre Infant s'ha donat d'alta al niu! No es pot desassignar!
+                </div>
+                @endif
+                    
+                @endif
+
+            @endif
             </div>
         </div>
     </div>

@@ -74,11 +74,16 @@ html{
 }
 
 .carrusel{
-    height: 525px;
+    height: 550px;
 }
 
 h2{
     text-align: center;
+}
+
+.img-fluid{
+    width: 100%;
+    height: 80%;
 }
 
 

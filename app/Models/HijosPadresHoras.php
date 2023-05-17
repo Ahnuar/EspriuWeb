@@ -40,6 +40,15 @@ class HijosPadresHoras extends Model
                     ->where('hijos_padres_horas.fecha',$fecha)
                     ->get();
     }
+
+    public function scopeVerApuntadosGlobales($query, $idpadre, $idhijo){
+        return
+            $query
+                ->select('*')
+                ->where('idpadre',$idpadre)
+                ->where('idhijo', $idhijo)
+                ->get();
+    }
     
     
 }

@@ -62,6 +62,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/home/gestioFills',[App\Http\Controllers\adminFuncController::class, 'mostrarViewGestioFills'])->name('gestioFills');
     Route::post('/home/gestioFills/insertar', [App\Http\Controllers\adminFuncController::class,'insertarFill'])->name('insertarFill');
     Route::post('home/assignarFill',[App\Http\Controllers\HomeController::class, 'assignarHijo'])->name('assignarHijo');
+    Route::post('home/desassignarFill',[App\Http\Controllers\HomeController::class, 'desassignarHijo'])->name('desassignarHijo');
 
     Route::get('/obtenerFacturacion{mes}',  [App\Http\Controllers\facturacioController::class, 'obtenerFacturacion'])->name('datos.Facturacion');
 

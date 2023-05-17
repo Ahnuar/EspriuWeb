@@ -328,7 +328,7 @@ class adminFuncController extends Controller
                 $dades["fillInsertat"] = $fill["nombre"];
             }
     
-    
+            $dades["Infants"]=Hijos::index();
             $dades["eventos"] = Eventos::Proximos();
             return view('adminfunc/gestionhijos',$dades);
         }

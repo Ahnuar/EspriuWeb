@@ -50,7 +50,7 @@ class HoraAcogida extends Model
 
     public function scopeVerHorasNiu($query){
         $query->join('servicios', 'horas_acogida.idservicio', '=', 'servicios.id')
-        ->select('horas_acogida.hora_inicio', 'horas_acogida.hora_fin', 'servicios.fecha_fin')
+        ->select('horas_acogida.id','horas_acogida.hora_inicio', 'horas_acogida.hora_fin','horas_acogida.Precio', 'servicios.fecha_fin')
         ->distinct()
         ->where('servicios.nombre', 'LIKE', '%NIU%');
         return $query->get();

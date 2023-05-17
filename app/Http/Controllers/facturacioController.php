@@ -45,7 +45,6 @@ class facturacioController extends Controller{
 
     public function lista(){
         $user=auth()->user();
-
         if($user["monitor"]==1 || $user["admin"]==1){
             $facturacio = HijosPadresHoras::VerApuntadosPorFecha(date('Y-m-d'));
         
@@ -67,6 +66,8 @@ class facturacioController extends Controller{
         }
         
     }
+
+
 
 
 }

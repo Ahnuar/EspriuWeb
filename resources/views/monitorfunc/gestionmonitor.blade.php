@@ -9,6 +9,9 @@
                         <form action="{{route('lista')}}">
                             <button class="btn btn-primary adminfunc" >Passar llista</button>
                         </form>
+                        <form action="{{route('exportar')}}">
+                            <button class="btn btn-primary adminfunc" >Exportar Mensual</button>
+                        </form>
                     </div>
                 </div>
 

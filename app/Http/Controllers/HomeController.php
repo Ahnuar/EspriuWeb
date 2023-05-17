@@ -8,6 +8,7 @@ use App\Models\Hijos;
 use App\Models\HijosPadres;
 use App\Models\HijosPadresHoras;
 use Illuminate\Http\Request;
+use League\Csv\Writer;
 
 class HomeController extends Controller
 {
@@ -117,5 +118,49 @@ class HomeController extends Controller
         $dades["usuario"]=$user;
         $dades["hijosPropios"] = Hijos::HijosPadres($user["id"]);
         return view('home', $dades);
+    }
+
+    public function exportar(){
+
+    $user=auth()->user();
+    $dades["admin"]=false;
+    $dades["monitor"]=false;
+
+    if($user["admin"]==1){
+        $dades["admin"]=true;
+    }
+
+    if($user["monitor"]==1){
+        $dades["monitor"]=true;
+    }
+    
+    $resultados = HijosPadresHoras::VerApuntadosPorFechaAgrupados();
+    if(count($resultados)!=0){
+        // Crear el objeto Writer
+        $csv = Writer::createFromPath(getenv('USERPROFILE') . DIRECTORY_SEPARATOR . 'Desktop'.'\Facturacio.csv', 'w');
+
+        // Escribir los encabezados
+        $csv->insertOne(['Nom Usuari', 'Nom Infant', 'Cognoms Infant', 'Correo Infant', 'Total Preu']);
+
+        // Escribir los datos de cada resultado
+    // Escribir los datos de cada resultado
+    foreach ($resultados as $resultado) {
+        $csv->insertOne([
+            $resultado->name,
+            $resultado->nombre,
+            $resultado->apellidos,
+            $resultado->correo,
+            $resultado->total
+        ]);
+    }
+
+    // Eliminar las comillas alrededor de cada valor
+    $csv->setEnclosure('"');
+
+        $dades["exportat"]=true;
+    }
+        $dades["usuario"]=$user;
+        $dades["hijosPropios"] = Hijos::HijosPadres($user["id"]);
+        return view('home',$dades);
     }
 }

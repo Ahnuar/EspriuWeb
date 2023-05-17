@@ -66,5 +66,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/obtenerFacturacion{mes}',  [App\Http\Controllers\facturacioController::class, 'obtenerFacturacion'])->name('datos.Facturacion');
 
-
+    Route::get('/home/exportar',[App\Http\Controllers\HomeController::class, 'exportar'])->name('exportar');
 });

@@ -42,8 +42,7 @@
                     @else
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('facturacio') }}">{{ __('Facturacio') }}</a>
-                        </li>
-                        
+                        </li>                        
                         
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}"

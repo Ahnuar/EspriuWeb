@@ -41,9 +41,9 @@ class HomeController extends Controller
         if($user["monitor"]==1){
             $dades["monitor"]=true;
         }
-
+        $dades["usuario"]=$user;
         $dades["eventos"] = Eventos::Proximos();
-
+        
         $dades["hijosPropios"] = Hijos::HijosPadres($user["id"]);
         return view('home', $dades);
     }
@@ -78,7 +78,7 @@ class HomeController extends Controller
             }
             $dades["fillAssignat"]=$hijo[0]["nombre"];
         }
-        
+        $dades["usuario"]=$user;
         $dades["hijosPropios"] = Hijos::HijosPadres($user["id"]);
         return view('home', $dades);
     }
@@ -114,7 +114,7 @@ class HomeController extends Controller
             }
             $dades["filldesAssignat"]=$hijo[0]["nombre"];
         }
-        
+        $dades["usuario"]=$user;
         $dades["hijosPropios"] = Hijos::HijosPadres($user["id"]);
         return view('home', $dades);
     }

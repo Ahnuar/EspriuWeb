@@ -81,11 +81,11 @@
                         <form action="{{route('modificarHora')}}" method="POST" id="modificarHoras">
                             @csrf
                             <div style="visibility: hidden">
-                                <label for="id" style="margin-left:30px">Id: </label><input class="form-control pepe" type="text" value="{{$horaSelected->id}}" name="id" id="id" readonly>
+                                <label for="id"  >Id: </label><input class="form-control pepe" type="text" value="{{$horaSelected->id}}" name="id" id="id" readonly>
                             </div>
-                            <label for="horaInici" style="margin-left:10px">Hora inici:</label><input required class="form-control pepe" value="{{$horaSelected->hora_inicio}}" type="time" name="horaInici" id="horaInici" style="margin-left: 10px" required><br><br>
-                            <label for="horaFinal" style="margin-left:10px">Hora Final:</label><input required class="form-control pepe" value="{{$horaSelected->hora_fin}}" type="time" name="horaFinal" id="horaFinal" style="margin-left: 10px" required><br><br>
-                            <label for="preu" style="margin-left:10px">Preu:</label><input required class="form-control pepe" type="number" id="preu" name="preu" value="{{$horaSelected->Precio}}" style="margin-left: 10px" required><br><br>
+                            <label for="horaInici">Hora inici:</label><input required class="form-control pepe" value="{{$horaSelected->hora_inicio}}" type="time" name="horaInici" id="horaInici"   required><br><br>
+                            <label for="horaFinal">Hora Final:</label><input required class="form-control pepe" value="{{$horaSelected->hora_fin}}" type="time" name="horaFinal" id="horaFinal"   required><br><br>
+                            <label for="preu">Preu:</label><input required class="form-control pepe" type="number" id="preu" name="preu" value="{{$horaSelected->Precio}}"   required><br><br>
                             <button type="submit" class="btn btn-primary adminfunc" style="float: left">Modificar</button>
                         </form>
                         <form action="{{route('eliminarHora')}}" method="POST">
@@ -93,7 +93,7 @@
 
                             <button type="submit" class="btn btn-primary adminfunc eliminar">Eliminar</button>
                             <div style="visibility: hidden">
-                                <label for="id" style="margin-left:30px">Id: </label><input type="text" value="{{$horaSelected->id}}" name="id" id="id" readonly><br><br>
+                                <label for="id"  >Id: </label><input type="text" value="{{$horaSelected->id}}" name="id" id="id" readonly><br><br>
                             </div>
                         </form>
                     </div>
@@ -111,8 +111,8 @@
         <div class="card-body">
             <form action="{{route('insertarHora')}}" method="POST" id="insertarHora">
                 @csrf
-                <label for="diaSelected" style="margin-left:10px">Dia setmana: </label>
-                <select name="diaSelected" id="diaSelected" class="form-control pepe" style="margin-left:10px">
+                <label for="diaSelected"  >Dia setmana: </label>
+                <select name="diaSelected" id="diaSelected" class="form-control pepe"  >
                     <option value="1">Dilluns</option>
                     <option value="2">Dimarts</option>
                     <option value="3">Dimecres</option>
@@ -120,9 +120,9 @@
                     <option value="5">Divendres</option>
                 </select>
                 <br>
-                <label for="horaInici" style="margin-left:10px">Hora inici:</label><input required class="form-control pepe" type="time" name="horaInici" id="horaInici" style="margin-left: 10px" required><br><br>
-                <label for="horaFinal" style="margin-left:10px">Hora Final:</label><input required class="form-control pepe" type="time" name="horaFinal" id="horaFinal" style="margin-left: 10px" required><br><br>
-                <label for="preu" style="margin-left:10px">Preu:</label><input required class="form-control pepe" type="number" id="preu" name="preu" style="margin-left: 10px" required><br><br>
+                <label for="horaInici"  >Hora inici:</label><input required class="form-control pepe" type="time" name="horaInici" id="horaInici"   required><br><br>
+                <label for="horaFinal"  >Hora Final:</label><input required class="form-control pepe" type="time" name="horaFinal" id="horaFinal"   required><br><br>
+                <label for="preu"  >Preu:</label><input required class="form-control pepe" type="number" id="preu" name="preu"   required><br><br>
                 <button type="submit" class="btn btn-primary adminfunc" style="float: left">Insertar</button>
             </form>
         </div>

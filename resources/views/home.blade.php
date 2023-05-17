@@ -4,16 +4,32 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12">
+            @if (session('status'))
             <div class="card">
                 <div class="card-header">{{ __('Avisos') }}</div>
-
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    {{ __('Ja estàs enregistrat!') }}
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                </div>
+            </div>
+            @endif
+            <br>
+            <div class="card">
+                <div class="card-header">Dades d'usuari:</div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nom</th>
+                                <th scope="col">Correu</th>
+                            </tr>
+                            <tr>
+                                <td>{{$usuario->name}}</td>
+                                <td>{{$usuario->email}}</td>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
             <br>
@@ -27,7 +43,7 @@
                                 <thead>
                                     <tr>
                                     <th scope="col">Nom</th>
-                                    <th scope="col">Cognoms</th>
+                                    <th class="d-none d-md-block" scope="col">Cognoms</th>
                                     <th scope="col">Correu</th>
                                     </tr>
                                 </thead>
@@ -35,7 +51,7 @@
                                     @foreach($hijosPropios as $hijo)
                                     <tr>
                                     <td>{{$hijo->nombre}}</td>
-                                    <td>{{$hijo->apellidos}}</td>
+                                    <td class="d-none d-md-block">{{$hijo->apellidos}}</td>
                                     <td>{{$hijo->correo}}</td>
                                     </tr>
                                     @endforeach

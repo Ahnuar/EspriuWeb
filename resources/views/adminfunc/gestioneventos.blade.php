@@ -70,11 +70,11 @@
                     <form action="{{route('modificarevento')}}" method="POST">
                         @csrf
                         <div style="visibility: hidden">
-                            <label for="id" style="margin-left:30px">Id: </label><input class="form-control pepe" type="text" value="{{$eventoSelected->id}}" name="id" id="id" readonly>
+                            <label for="id"  >Id: </label><input class="form-control pepe" type="text" value="{{$eventoSelected->id}}" name="id" id="id" readonly>
                         </div>
-                        <label for="nombre" style="margin-left:30px">Nom:</label><input required class="form-control pepe" value="{{$eventoSelected->nombre}}" type="text" name="nombre" id="nombre" style="margin-left: 10px"><br><br>
-                        <label for="desc" style="margin-left:30px">Descripció:</label><textarea required class="form-control pepe" name="desc" id="desc" style="margin-left: 10px">{{$eventoSelected->descripcion}}</textarea><br><br>
-                        <label for="data" style="margin-left:30px">Data-Hora:</label><input required class="form-control pepe" type="datetime-local" id="data" name="data" value="{{$eventoSelected->fecha_hora_evento}}"><br><br>
+                        <label for="nombre"  >Nom:</label><input required class="form-control pepe" value="{{$eventoSelected->nombre}}" type="text" name="nombre" id="nombre"  ><br><br>
+                        <label for="desc"  >Descripció:</label><textarea required class="form-control pepe" name="desc" id="desc"  >{{$eventoSelected->descripcion}}</textarea><br><br>
+                        <label for="data"  >Data-Hora:</label><input required class="form-control pepe" type="datetime-local" id="data" name="data" value="{{$eventoSelected->fecha_hora_evento}}"><br><br>
                         <button type="submit" class="btn btn-primary" style="float: left">Modificar</button>
     
                     </form>
@@ -99,13 +99,13 @@
                     <form action="{{route('modificarevento')}}" method="POST">
                         @csrf
                         <div style="visibility: hidden">
-                            <label for="id" style="margin-left:30px">Id: </label><input type="text" value="{{$evento->id}}" name="id" id="id" readonly><br><br>
+                            <label for="id"  >Id: </label><input type="text" value="{{$evento->id}}" name="id" id="id" readonly><br><br>
                         </div>
-                        <label for="nombre" style="margin-left:30px">Nom:</label><input required class="form-control pepe" value="{{$evento->nombre}}" type="text" name="nombre" id="nombre" style="margin-left: 10px"><br><br>
-                        <label for="desc" style="margin-left:30px">Descripció:</label><textarea required class="form-control pepe" name="desc" id="desc" style="margin-left: 10px">{{$evento->descripcion}}</textarea><br><br>
-                        <label for="url" style="margin-left:30px">Url Google Maps:</label><textarea required class="form-control pepe" name="url" id="url" style="margin-left: 10px">{{$evento->url_google_maps}}</textarea><br><br>
-                        <label for="curs" style="margin-left:30px">Curs:</label><input required class="form-control pepe" value="{{$evento->curso}}" type="text" name="curs" id="curs" style="margin-left: 10px"><br><br>
-                        <label for="data" style="margin-left:30px">Data-Hora:</label><input required class="form-control pepe" type="datetime-local" id="data" name="data" value="{{$evento->fecha_hora_evento}}"><br><br>
+                        <label for="nombre"  >Nom:</label><input required class="form-control pepe" value="{{$evento->nombre}}" type="text" name="nombre" id="nombre"  ><br><br>
+                        <label for="desc"  >Descripció:</label><textarea required class="form-control pepe" name="desc" id="desc"  >{{$evento->descripcion}}</textarea><br><br>
+                        <label for="url"  >Url Google Maps:</label><textarea required class="form-control pepe" name="url" id="url"  >{{$evento->url_google_maps}}</textarea><br><br>
+                        <label for="curs"  >Curs:</label><input required class="form-control pepe" value="{{$evento->curso}}" type="text" name="curs" id="curs"  ><br><br>
+                        <label for="data"  >Data-Hora:</label><input required class="form-control pepe" type="datetime-local" id="data" name="data" value="{{$evento->fecha_hora_evento}}"><br><br>
                         <button type="submit" class="btn btn-primary" style="float: left">Modificar</button>
     
                     </form>
@@ -135,13 +135,13 @@
         <form action="{{route('insertarEvento')}}" method="POST">
             @csrf
             <div style="visibility: hidden">
-                <label for="id" style="margin-left:30px">Id: </label><input type="text"  name="id" id="id" readonly><br><br>
+                <label for="id" >Id: </label><input type="text"  name="id" id="id" readonly><br><br>
             </div>
-            <label for="nombre" style="margin-left:30px">Nom:</label><input required class="form-control pepe" type="text" name="nombre" id="nombre" style="margin-left: 10px"><br><br>
-            <label for="desc" style="margin-left:30px">Descripció:</label><textarea required class="form-control pepe" name="desc" id="desc" style="margin-left: 10px"></textarea><br><br>
-            <label for="url" style="margin-left:30px">Url Google Maps:</label><textarea required class="form-control pepe" name="url" id="url" style="margin-left: 10px"></textarea><br><br>
-            <label for="curs" style="margin-left:30px">Curs:</label><input required class="form-control pepe" type="text" name="curs" id="curs" style="margin-left: 10px"><br><br>
-            <label for="data" style="margin-left:30px">Data-Hora:</label><input required class="form-control pepe" type="datetime-local" id="data" name="data"><br><br>
+            <label for="nombre">Nom:</label><input required class="form-control pepe" type="text" name="nombre" id="nombre"><br><br>
+            <label for="desc"  >Descripció:</label><textarea required class="form-control pepe" name="desc" id="desc" ></textarea><br><br>
+            <label for="url"  >Url Google Maps:</label><textarea required class="form-control pepe" name="url" id="url"></textarea><br><br>
+            <label for="curs"  >Curs:</label><input required class="form-control pepe" type="text" name="curs" id="curs"><br><br>
+            <label for="data"  >Data-Hora:</label><input required class="form-control pepe" type="datetime-local" id="data" name="data"><br><br>
             <button type="submit" class="btn btn-primary" >Insertar</button>
 
         </form>

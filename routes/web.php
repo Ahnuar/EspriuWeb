@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes(['verify' => true]);
-/* Route::fallback(function () {
+Route::fallback(function () {
     return redirect()->route('inici');
-});  */
+}); 
 
 Route::get('/',[App\Http\Controllers\IniciController::class, 'index'])->name('inici');
 
@@ -58,6 +58,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/niu', [App\Http\Controllers\HorasAcogidaController::class, 'index'])->name('niu.index')->middleware('auth');
     Route::post('/niu', [App\Http\Controllers\HorasAcogidaController::class, 'apuntar'])->name('niu.apuntar')->middleware('auth');
     Route::get('/niu/apuntar', [App\Http\Controllers\HorasAcogidaController::class, 'show'])->name('apuntar.show')->middleware('auth');
+    Route::post('/niu/apuntar', [App\Http\Controllers\HorasAcogidaController::class, 'apuntarPeriodico'])->name('niu.apuntarPeriodico')->middleware('auth');
 
     Route::get('/home/gestioFills',[App\Http\Controllers\adminFuncController::class, 'mostrarViewGestioFills'])->name('gestioFills');
     Route::post('/home/gestioFills/insertar', [App\Http\Controllers\adminFuncController::class,'insertarFill'])->name('insertarFill');

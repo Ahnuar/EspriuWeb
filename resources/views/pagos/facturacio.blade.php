@@ -7,7 +7,7 @@
             <h1>Facturació</h1>
         </div>
         <div class="col-12">
-            <label for="mes">Mes</label>
+            <label for="mes">Mes: </label>
             <select name="mes" id="mes">
                 <option value="1">Gener</option>
                 <option value="2">Febrer</option>
@@ -35,10 +35,10 @@
                         <thead>
                             <tr>
                                 <th scope="col">Nom Alumne</th>
-                                <th scope="col">Cognoms</th>
+                                <th scope="col d-none d-md-block">Cognoms</th>
                                 <th scope="col">Dia</th>
-                                <th scope="col">Hora Inici</th>
-                                <th scope="col">Hora Final</th>
+                                <th scope="col d-none d-md-block">Hora Inici</th>
+                                <th scope="col d-none d-md-block">Hora Final</th>
                                 <th scope="col">Preu</th>
                             </tr>
                         </thead>
@@ -53,8 +53,17 @@
         <script src="{{ asset('js/facturacio.js') }}" ></script>
 
         <script>
+            // Obtener la fecha actual
+            var fechaActual = new Date();
+            // Obtener el mes actual (0-11)
+            var mesActual = fechaActual.getMonth();
+            // Obtener el elemento select
+            var selectMeses = document.getElementById("mes");
+            // Establecer el mes actual como seleccionado
+            selectMeses.options[mesActual].selected = true;
+
             
-            </script>
+        </script>
     @endsection 
 @endsection
 

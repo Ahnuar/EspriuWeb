@@ -9,6 +9,7 @@ use App\Models\Hijos;
 use App\Models\HoraAcogida;
 use App\Models\HijosPadres;
 use App\Models\HijosPadresHoras;
+use DateTime;
 
 class HorasAcogidaController extends Controller
 {
@@ -66,6 +67,84 @@ class HorasAcogidaController extends Controller
 
 
 
+    public function apuntarPeriodico(Request $request){
+        $request->validate([
+            'hijo' => 'required|exists:hijos_padres,hijos_id,user_id,' . auth()->user()->id
+        ]);
+
+        // Fecha de inicio y fin en formato 'Y-m-d'
+        $diaActual = date('N'); // Obtiene el número del día de la semana (1 al 7)
+
+        if ($diaActual >= 6) {
+        // Si es sábado (6) o domingo (7)
+            $diaActual = strtotime('next Monday'); // Obtiene la fecha del próximo lunes
+        }else{
+            $diaActual = strtotime('today'); // Obtiene la fecha de hoy
+        }
+        $diaLaborableSiguiente = date('Y-m-d', $diaActual); // Formatea la fecha al formato deseado (Año-Mes-Día)
+
+
+        $fechaInicio = $diaLaborableSiguiente;
+        $hora = json_decode($request['hora']); // Decodificar la cadena JSON en un objeto
+        //dd($request->all());
+        $fechaFin = $hora->fecha_fin;
+
+
+        $inicio = strtotime($fechaInicio);
+        $fin = strtotime($fechaFin);
+
+        // Convertir las fechas a objetos DateTime
+        $inicio = new DateTime($fechaInicio);
+        $fin = new DateTime($fechaFin);
+
+
+        $error="";
+        // Iterar desde la fecha de inicio hasta la fecha de fin
+        while ($inicio <= $fin) {
+
+            if ($inicio->format('N') <= 5) {
+                try{
+
+                    $registroExistente = HijosPadresHoras::where([
+                        'idhijo' => $request->hijo,
+                        'idpadre' => auth()->user()->id,
+                        'idhora' => $hora->id,
+                        'servicio' => "NIU",
+                        'fecha' => $inicio->format('Y-m-d'),
+                        'hora_inicio' => $hora->hora_inicio,
+                        'hora_fin' => $hora->hora_fin,
+                    ])->exists();
+                    
+                    if ($registroExistente) {
+                        // El registro ya existe en la base de datos
+                        //$error =$error ."\n El dia ".$inicio->format('Y-m-d')." a ".$hora->hora_inicio."-".$hora->hora_fin. " ya esta apuntado. ";
+                    } else {
+                        // El registro no existe, puedes guardarlo
+                        $hijosPadresHoras = new HijosPadresHoras();
+                        $hijosPadresHoras->idhijo = $request->hijo;
+                        $hijosPadresHoras->idpadre = auth()->user()->id;
+                        $hijosPadresHoras->idhora = $hora->id;
+                        $hijosPadresHoras->servicio = "NIU";
+                        $hijosPadresHoras->fecha = $inicio->format('Y-m-d');
+                        $hijosPadresHoras->hora_inicio = $hora->hora_inicio;
+                        $hijosPadresHoras->hora_fin = $hora->hora_fin;
+                        $hijosPadresHoras->save();
+                    
+                        echo "El registro ha sido creado.";
+                    }
+                }catch(Exception $e){
+                    return back()->withErrors(['message' => 'No se ha encontrado la hora.']);
+                }
+            }
+
+            $inicio->modify('+1 day');
+        }
+
+        return redirect()->route('niu.index')->with('success', 'Infants apuntats correctament. Veure Facturació');
+    }
+
+
+
 
     public function show(Request $request){
         $fechas = HoraAcogida::HorasNiu();
@@ -84,7 +163,7 @@ class HorasAcogidaController extends Controller
     {
     
         $request->validate([
-            'Child' => 'required|exists:hijos_padres,hijos_id,user_id,' . auth()->user()->id
+            'hijo' => 'required|exists:hijos_padres,hijos_id,user_id,' . auth()->user()->id
         ]);
 
         try{

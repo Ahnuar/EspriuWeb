@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Eventos extends Model
 {
@@ -15,7 +16,13 @@ class Eventos extends Model
 
     public function scopeProximos($query)
     {
-        return $query->where('fecha_hora_evento', '>', now())->orderBy('fecha_hora_evento')->get();
+        return $query
+        ->select('eventos.*', DB::raw('COUNT(eventos_user.hijo_id) AS conteo'))
+        ->leftJoin('eventos_user', 'eventos.id', '=', 'eventos_user.eventos_id')
+        ->where('fecha_hora_evento', '>', now())->orderBy('fecha_hora_evento')
+        ->groupBy('eventos.id','eventos.nombre','eventos.descripcion','eventos.url_google_maps','eventos.imagen','eventos.curso','eventos.fecha_hora_evento','eventos.created_at','eventos.updated_at')
+        ->get();
+
     }
 
     public function scopebuscarpornombre($query,$nombre){

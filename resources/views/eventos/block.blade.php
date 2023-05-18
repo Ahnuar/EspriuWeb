@@ -3,7 +3,7 @@
     <div class="card-body">
         <p class="card-text">{{$evento->descripcion}}</p>
         <p class="card-text">{{$evento->fecha_hora_evento}}</p>
-
+        <p class="card-text">Gent apuntada: {{$evento->conteo}}</p>
         @if($evento->url_google_maps!=null && $evento->url_google_maps!='')
            <div class="w-100"> {!! $evento->url_google_maps !!}</div>
         @endif

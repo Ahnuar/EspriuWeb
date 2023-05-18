@@ -12,7 +12,8 @@ class facturacioController extends Controller{
         $mes_actual = now()->month;
         $facturacio = HijosPadresHoras::VerHorasHijo(auth()->user()->id,$mes_actual);
         $dades['facturacio']=null;
-        if(count($facturacio) > 0)
+
+        if($facturacio != null || count($facturacio) > 0)
         {
             $total = 0;
             foreach($facturacio as $factura)

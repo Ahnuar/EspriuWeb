@@ -3,9 +3,11 @@
     <div class="card-body">
         <p class="card-text">{{$evento->descripcion}}</p>
         <p class="card-text">{{$evento->fecha_hora_evento}}</p>
-        <iframe class="mb-3" src="{{$evento->url_google_maps}}" frameborder="0" style="border:0; width:100%; height: 300px; " allowfullscreen></iframe>
-        <div class="d-flex justify-content-end">
 
+        @if($evento->url_google_maps!=null && $evento->url_google_maps!='')
+           <div class="w-100"> {!! $evento->url_google_maps !!}</div>
+        @endif
+        <div class="d-flex justify-content-end">
             <form method="POST" action="{{ route('evento.signup') }}" name="inscribir{{$evento->id}}" id="inscribir{{$evento->id}}">
                 @csrf
                 <input type="text" hidden value="{{$evento->id}}" id="idEvento" name="idEvento">

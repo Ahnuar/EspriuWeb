@@ -13,7 +13,7 @@
             @php
                 $num = 0;
                 $num = 12/count($eventos);
-                if($num < 3) $num = 3;
+                if($num < 4) $num = 4;
             @endphp
             @foreach ($eventos as $evento)
                 <div class="col-12 col-md-6 col-lg-{{$num}}">

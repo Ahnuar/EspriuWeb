@@ -62,4 +62,5 @@ class EventosController extends Controller
         return view('eventos/detall',$dades);
     }
 
+
 }

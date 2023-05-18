@@ -16,6 +16,7 @@
                         <option value="{{$hijo->id}}">{{$hijo->nombre}} {{$hijo->apellidos}}</option>
                     @endforeach
                 </select>
+                <br>
                 <button type="submit" class="btn btn-primary text-end">INSCRIURE</a>
             </form>
             

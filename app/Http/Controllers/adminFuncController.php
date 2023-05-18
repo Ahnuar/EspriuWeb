@@ -71,18 +71,17 @@ class adminFuncController extends Controller
         $dades["nomuser"]=$email;
         $dades["eventos"] = Eventos::Proximos();
         $usuario= User::buscaruser($email);
-
         if($user["admin"]){
             if(count($usuario)>0){
                 if($usuario[0]["monitor"]==0){
 
                     $dades["success"] = User::hacermonitor($usuario[0]['email']);
                     $dades["monitoruser"] = true;
-                    $dades["nomuser"] = $usuario["name"];
+                    
                 }
             }
         }
-
+        $dades["monitores"]=User::index();
         return view('adminfunc/gestiondemonitores', $dades);
     }
 

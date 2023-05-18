@@ -7,6 +7,7 @@
         @if($evento->url_google_maps!=null && $evento->url_google_maps!='')
            <div class="w-100"> {!! $evento->url_google_maps !!}</div>
         @endif
+        @if(count($hijos)>0)
         <div class="d-flex justify-content-end">
             <form method="POST" action="{{ route('evento.signup') }}" name="inscribir{{$evento->id}}" id="inscribir{{$evento->id}}">
                 @csrf
@@ -21,6 +22,8 @@
             </form>
             
         </div>
+        @endif
+
     </div>
     @if(isset($success))
     @if($evento->id ==$eventoInscrito)

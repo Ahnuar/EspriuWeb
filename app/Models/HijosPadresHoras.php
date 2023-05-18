@@ -52,15 +52,13 @@ class HijosPadresHoras extends Model
                 ->get();
     }
 
-    public function scopeVerApuntadosPorFechaAgrupados($query){
-        $mesActual = Carbon::now()->format('m');
-
+    public function scopeVerApuntadosPorFechaAgrupados($query, $mes){
         $query = DB::table('hijos_padres_horas')
         ->select('users.name', 'hijos.nombre', 'hijos.apellidos', 'hijos.correo', DB::raw('SUM(horas_acogida.Precio) as total'))
         ->join('hijos', 'hijos_padres_horas.idhijo', '=', 'hijos.id')
         ->join('horas_acogida', 'hijos_padres_horas.idhora', '=', 'horas_acogida.id')
         ->join('users', 'hijos_padres_horas.idpadre', '=', 'users.id')
-        ->whereMonth('hijos_padres_horas.created_at', $mesActual)
+        ->whereMonth('hijos_padres_horas.created_at', $mes)
         ->groupBy('users.name', 'hijos_padres_horas.idhijo', 'hijos.nombre', 'hijos.apellidos', 'hijos.correo')
         ->get();
         return $query;

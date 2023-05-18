@@ -120,7 +120,7 @@ class HomeController extends Controller
         return view('home', $dades);
     }
 
-    public function exportar(){
+    public function exportar(Request $request){
 
     $user=auth()->user();
     $dades["admin"]=false;
@@ -133,8 +133,8 @@ class HomeController extends Controller
     if($user["monitor"]==1){
         $dades["monitor"]=true;
     }
-    
-    $resultados = HijosPadresHoras::VerApuntadosPorFechaAgrupados();
+    $dades["exportat"]=false;
+    $resultados = HijosPadresHoras::VerApuntadosPorFechaAgrupados($request->mes);
     if(count($resultados)!=0){
         // Crear el objeto Writer
         $csv = Writer::createFromPath(getenv('USERPROFILE') . DIRECTORY_SEPARATOR . 'Desktop'.'\Facturacio.csv', 'w');

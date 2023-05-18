@@ -74,6 +74,7 @@ class adminFuncController extends Controller
         if($user["admin"]){
             if(count($usuario)>0){
                 if($usuario[0]["monitor"]==0){
+
                     $dades["success"] = User::hacermonitor($usuario[0]['email']);
                     $dades["monitoruser"] = true;
                     

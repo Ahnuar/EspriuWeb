@@ -29,7 +29,38 @@
       </div>
     </div>
   </div><br>
+
+
+  <div class="container">
+
+    <div class="row">
+
+      @if(isset($eventos) && count($eventos)>0)
+            <div class="col-12 text-center my-5">
+                <h2 class="">Events</h2>
+                <p>Aquí podràs veure alguns dels nostres esdeveniments</p>
+            </div>
+            @php
+                $num = 0;
+                $num = 12/count($eventos);
+                if($num < 4) $num = 4;
+            @endphp
+            @foreach ($eventos as $evento)
+                <div class="col-12 col-md-6 col-lg-{{$num}}">
+                    @include('eventos/block')
+                </div>
+            @endforeach
+
+      @endif
+    </div>
+  </div>
   <div class="container mt-5">
+    <div class="row">
+      <div class="col-12 text-center mb-5">
+        <h3>Més informació de la nostra escola</h3>
+        <p>Aquí trobaràs més informació de la nostra escola </p>
+      </div>
+    </div>
     <div class="row margin-bottom-50">
       <div class="col-12 col-md-4"> 
           <img class="col-12 img-fluid margin-bottom-15" src="{{ URL::asset('/img/AFA_Logo.png') }}" alt="AFA">

@@ -8,11 +8,12 @@
            <div class="w-100"> {!! $evento->url_google_maps !!}</div>
         @endif
         <br>
-        @if(count($hijos)>0)
+        @if(isset($hijos) && count($hijos)>0)
         <div class="row">
             <form method="POST" action="{{ route('evento.signup') }}" name="inscribir{{$evento->id}}" id="inscribir{{$evento->id}}">
                 @csrf
                 <input type="text" hidden value="{{$evento->id}}" id="idEvento" name="idEvento">
+                
                 <select name="selectHijo" id="selectHijo" form="inscribir{{$evento->id}}" class="form-control">
                     @foreach($hijos as $hijo)
                         <option value="{{$hijo->id}}">{{$hijo->nombre}} {{$hijo->apellidos}}</option>

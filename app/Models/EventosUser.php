@@ -14,4 +14,13 @@ class EventosUser extends Model
         ->where('hijo_id',$fill);
         return $query->get();
     }
+
+    public function scopelistaApuntados($query,$event){
+        $query
+            ->select('hijos.nombre','hijos.apellidos','hijos.correo','users.name')
+            ->join('hijos', 'eventos_user.hijo_id', '=', 'hijos.id')
+            ->join('users','eventos_user.user_id','=','users.id')
+            ->where('eventos_user.eventos_id',$event);
+        return $query->get();
+    }
 }

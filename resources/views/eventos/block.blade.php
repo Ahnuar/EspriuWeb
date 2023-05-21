@@ -3,7 +3,12 @@
     <div class="card-body">
         <p class="card-text">{{$evento->descripcion}}</p>
         <p class="card-text">{{$evento->fecha_hora_evento}}</p>
-        <p class="card-text">Gent apuntada: {{$evento->conteo}}</p>
+        @if($admin || $monitor)
+            <p class="card-text">Infants apuntats: <a href="{{route('listaApuntados',['evento' => $evento->id])}}">{{$evento->conteo}}</a></p>
+        @endif
+        @if(!$admin && !$monitor)
+        <p class="card-text">Infants apuntats: {{$evento->conteo}}</p>
+        @endif
         @if($evento->url_google_maps!=null && $evento->url_google_maps!='' && str_contains($evento->url_google_maps, '<iframe src="https://www.google.com/maps'))
            <div class="w-100"> {!! $evento->url_google_maps !!}</div>
         @endif

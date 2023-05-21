@@ -67,7 +67,7 @@ class HomeController extends Controller
         $dades["nomuser"]=$email;
         $hijo= Hijos::buscarNen($email);
         if(count($hijo)>0){
-            $hijosasignados = Hijos::buscarHijoAsignado($user["id"],$hijo[0]["id"]);
+            $hijosasignados = HijosPadres::buscarHijoAsignado($user["id"],$hijo[0]["id"]);
             if(count($hijosasignados)==0){
             
             $fillAmbPare = new HijosPadres();
@@ -101,20 +101,22 @@ class HomeController extends Controller
 
         $dades["aconseguit"]=false;
         $dades["nomuser"]=$email;
+        $dades["filldesAssignat"]=$request->email;
         $hijo= Hijos::buscarNen($email);
-        if(count($hijo)>0){
-            $hijosasignados = Hijos::buscarHijoAsignado($user["id"],$hijo[0]["id"]);
+
+        if(count($hijo)!=0){
+            $hijosasignados = HijosPadres::buscarHijoAsignado($user["id"],$hijo[0]["id"]);
             if(count($hijosasignados)!=0){
                 $hijosasignadoshoras=HijosPadresHoras::VerApuntadosGlobales($user["id"],$hijo[0]["id"]);
                 if(count($hijosasignadoshoras)==0){
-                    $hijosasignados[0]->delete();
+                    HijosPadres::Desasignar($user["id"],$hijo[0]["id"]);
                     $dades["aconseguit"]=true;
                 } else{
                     $dades["fillAlNiu"]=true;
                 }           
-            }
+            }else{$dades["noAsignat"]=true;}
             $dades["filldesAssignat"]=$hijo[0]["nombre"];
-        }
+        }else{$dades["noExisteix"]=true;}
         $dades["usuario"]=$user;
         $dades["hijosPropios"] = Hijos::HijosPadres($user["id"]);
         return view('home', $dades);

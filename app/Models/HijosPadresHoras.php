@@ -47,7 +47,6 @@ class HijosPadresHoras extends Model
         return
             $query
                 ->select('*')
-                ->where('idpadre',$idpadre)
                 ->where('idhijo', $idhijo)
                 ->get();
     }

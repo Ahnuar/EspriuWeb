@@ -80,7 +80,7 @@
                 @if(isset($success))
                 @if($success)
                 <div class="alert alert-success text-center">
-                    {{$fillAssignat}} assignat!
+                    T'has assignat a {{$fillAssignat}}!
                 </div>
                 @endif
                 @if(!$success)
@@ -116,7 +116,7 @@
                 @if(isset($aconseguit))
                 @if($aconseguit)
                 <div class="alert alert-success text-center">
-                    {{$filldesAssignat}} desassignat!
+                    T'has desassignat a {{$filldesAssignat}}!
                 </div>
                 @endif
                 @if(!$aconseguit)
@@ -125,7 +125,16 @@
                     El vostre Infant s'ha donat d'alta al niu! No es pot desassignar!
                 </div>
                 @endif
-                    
+                @if(isset($noAsignat))
+                <div class="alert alert-danger text-center">
+                    Aquest infant no està assignat a vosté!
+                </div>
+                @endif
+                @if(isset($noExisteix))
+                <div class="alert alert-danger text-center">
+                    No hem trobat el correu {{$filldesAssignat}}!
+                </div>
+                @endif 
                 @endif
 
             @endif

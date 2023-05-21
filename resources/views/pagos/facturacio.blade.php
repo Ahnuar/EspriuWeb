@@ -6,6 +6,11 @@
         <div class="col-12">
             <h1>Facturació</h1>
         </div>
+        @if(session('success'))
+            <div class="alert alert-success text-center">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="col-12">
             <label for="mes">Mes: </label>
             <select name="mes" id="mes">
@@ -53,8 +58,9 @@
                     <form method="POST" action="{{ route('facturacio.deletehora') }}">
                         @csrf
                         <div class="form-group">
-                            @if(isset($horasNoperiodicas) && $horasNoperiodicas)
-    
+                            @if(isset($horasNoperiodicas) && count($horasNoperiodicas)>0)
+                           
+
                                 <label for ="hora">Horas Apuntas No Periodicament</label>
                                 <select name="hora" id="hora" class="form-control my-2">
                                     @foreach($horasNoperiodicas as $hora)

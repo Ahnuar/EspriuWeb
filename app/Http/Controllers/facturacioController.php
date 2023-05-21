@@ -25,7 +25,7 @@ class facturacioController extends Controller{
         }
         $idpadre = auth()->user()->id;
         $dades['horasNoperiodicas']= HijosPadresHoras::VerHorasSiguientesHorasNoPeriodicas($idpadre);
-    
+        
         return view('/pagos/facturacio', $dades);
     }
     
@@ -71,8 +71,12 @@ class facturacioController extends Controller{
         
     }
 
-    public function obtenerdatosfecha(){
+    public function delete(Request $request){
+
+        $hora = json_decode($request['hora']);
+        HijosPadresHoras::eliminarHoras($hora->fecha,$hora->hora_inicio,$hora->hora_fin,$hora->id);
         
+        return redirect()->route('facturacio')->with('success', 'Infant eliminat correctament. Veure Facturació');
 
     }
 

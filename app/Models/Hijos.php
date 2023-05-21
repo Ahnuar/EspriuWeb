@@ -26,11 +26,5 @@ class Hijos extends Model
         return $query->select('*')->where('correo',$correo)->get();
     }
 
-    public function scopebuscarHijoAsignado($query, $idpare,$idfill){
-        $query->join('hijos_padres', 'hijos_padres.hijos_id', '=', 'hijos.id')
-        ->select('hijos.*')
-        ->where('hijos_padres.user_id', $idpare)
-        ->where('hijos_padres.hijos_id', $idfill);
-        return $query->get();
-    }
+
 }

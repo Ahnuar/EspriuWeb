@@ -13,7 +13,7 @@
                             </div>
                             <div class="col-12 col-md-3">
                                 <form action="{{route('altasbajasmonitores')}}">
-                                    <button class="btn btn-primary text-center w-100" >Gestió Monitors</button>
+                                    <button class="btn btn-primary text-center w-100" >Gestió Privilegis</button>
                                 </form>
                             </div>
                             <div class="col-12 col-md-3">

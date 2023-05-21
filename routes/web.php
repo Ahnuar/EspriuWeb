@@ -26,15 +26,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/facturacio',[App\Http\Controllers\FacturacioController::class,'index'])->name('facturacio');
     Route::get('/lista',[App\Http\Controllers\FacturacioController::class,'lista'])->name('lista');
+    Route::get('/eventos/{evento}/lista',[App\Http\Controllers\EventosController::class,'listaApuntados'])->name('listaApuntados');
     
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     
     Route::get('/home/gestioneventos', [App\Http\Controllers\adminFuncController::class, 'index'])->name('gestioneventos');
 
-    Route::get('/home/altasbajasmonitores', [App\Http\Controllers\adminFuncController::class, 'mostrarviewmonitores'])->name('altasbajasmonitores');
+    Route::get('/home/privilegis', [App\Http\Controllers\adminFuncController::class, 'mostrarviewusers'])->name('altasbajasmonitores');
 
-    Route::post('/home/altasbajasmonitores/hacermonitor',[App\Http\Controllers\adminFuncController::class,'hacermonitor'])->name('hacermonitor');
+    Route::post('/home/privilegis/hacermonitor',[App\Http\Controllers\adminFuncController::class,'hacermonitor'])->name('hacermonitor');
+    Route::post('/home/privilegis/quitarMonitor',[App\Http\Controllers\adminFuncController::class,'quitarMonitor'])->name('quitarMonitor');
+    Route::post('/home/privilegis/haceradmin',[App\Http\Controllers\adminFuncController::class,'haceradmin'])->name('haceradmin');
+    Route::post('/home/privilegis/quitaradmin',[App\Http\Controllers\adminFuncController::class,'quitaradmin'])->name('quitaradmin');
+    
     Route::post('/home/gestioneventos/evento',[App\Http\Controllers\adminFuncController::class,'buscarEvento'])->name('buscarEvento');
     Route::post('/home/gestioneventos/totsElsEvents',[App\Http\Controllers\adminFuncController::class,'mostrarTodos'])->name('mostrarTodos');
     Route::post('/home/gestioneventos/evento/modificar',[App\Http\Controllers\adminFuncController::class, 'modificarevento'])->name('modificarevento');
@@ -51,6 +56,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/home/gestioNiu/hora/insertar', [App\Http\Controllers\adminFuncController::class,'insertarHora'])->name('insertarHora');
 
     Route::post('/evento/signup', [App\Http\Controllers\EventosController::class,'signup'])->name('evento.signup');
+    Route::post('/evento/desasignar', [App\Http\Controllers\EventosController::class,'desasignarse'])->name('evento.desasignarse');
     
     Route::get('/acogida', [App\Http\Controllers\HorasAcogidaController::class, 'index'])->name('acogida.index')->middleware('auth');
     Route::post('/acogida', [App\Http\Controllers\HorasAcogidaController::class, 'apuntar'])->name('acogida.apuntar')->middleware('auth');  

@@ -28,6 +28,14 @@ class EventosController extends Controller
     public function index()
     {
         $user=auth()->user();
+        if($user["admin"]==1){
+            $dades["admin"]=true;
+        }
+
+        if($user["monitor"]==1){
+            $dades["monitor"]=true;
+        }
+
         $dades['eventos'] = Eventos::Proximos();
         $dades['hijos'] = Hijos::HijosPadres($user["id"]);
     
@@ -42,6 +50,14 @@ class EventosController extends Controller
         ]);
 
         $user=auth()->user();
+        if($user["admin"]==1){
+            $dades["admin"]=true;
+        }
+
+        if($user["monitor"]==1){
+            $dades["monitor"]=true;
+        }
+
         $inscripcions =EventosUser::BuscarInscripcio($request->idEvento,$request->selectHijo);
         $Hijo = Hijos::find($request->selectHijo);
         $dades["fillInscrit"]=$Hijo["nombre"];
@@ -60,6 +76,49 @@ class EventosController extends Controller
         $dades['hijos'] = Hijos::HijosPadres($user["id"]);
 
         return view('eventos/detall',$dades);
+    }
+
+    public function desasignarse(Request $request)
+    {
+       
+        
+
+        $user=auth()->user();
+        if($user["admin"]==1){
+            $dades["admin"]=true;
+        }
+
+        if($user["monitor"]==1){
+            $dades["monitor"]=true;
+        }
+
+        $inscripcions =EventosUser::BuscarInscripcio($request->idEvento,$request->desasin);
+        $Hijo = Hijos::find($request->desasin);
+        $dades["fillDesinscrit"]=$Hijo["nombre"];
+        $dades["eventoDesinscrito"]=$request->idEvento;
+        $dades["desasignat"]=false;
+        if(count($inscripcions)!=0){
+            EventosUser::Desasignar($request->idEvento,$request->desasin);
+            $dades["desasignat"]=true;
+        }
+        $dades['eventos'] = Eventos::Proximos();
+        $dades['hijos'] = Hijos::HijosPadres($user["id"]);
+
+        return view('eventos/detall',$dades);
+    }
+
+    public function listaApuntados($evento){
+        $dades["listaApuntados"]=EventosUser::listaApuntados($evento);
+        $user=auth()->user();
+        if($user["admin"]==1){
+            $dades["admin"]=true;
+        }
+
+        if($user["monitor"]==1){
+            $dades["monitor"]=true;
+        }
+
+        return view('eventos/listaApuntados',$dades);
     }
 
 

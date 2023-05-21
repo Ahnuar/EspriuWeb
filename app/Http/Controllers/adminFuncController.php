@@ -46,9 +46,9 @@ class adminFuncController extends Controller
         return view('adminfunc/gestioneventos', $dades);
     }
 
-    public function mostrarviewmonitores(){
-        $dades["monitores"]=User::index();
-        return view('adminfunc/gestiondemonitores',$dades);
+    public function mostrarviewusers(){
+        $dades["privilegiats"]=User::index();
+        return view('adminfunc/gestiousers',$dades);
     }
 
     public function mostrarViewGestioFills(){
@@ -81,8 +81,78 @@ class adminFuncController extends Controller
                 }
             }
         }
-        $dades["monitores"]=User::index();
-        return view('adminfunc/gestiondemonitores', $dades);
+        $dades["privilegiats"]=User::index();
+        return view('adminfunc/gestiousers', $dades);
+    }
+    public function quitarMonitor(Request $request){
+        $user=auth()->user();
+        $email = $request->email;
+        $dades["monitor"]=$user["monitor"];
+        $dades["admin"]=$user["admin"];
+
+        $dades["desprivilegiat"]=false;
+        $dades["nomuser"]=$email;
+        $dades["eventos"] = Eventos::Proximos();
+        $usuario= User::buscaruser($email);
+        if($user["admin"]){
+            if(count($usuario)>0){
+                if($usuario[0]["monitor"]==1){
+                    
+                    $dades["desprivilegiat"] = User::quitarMonitor($usuario[0]['email']);
+                    $dades["monitoruser"] = true;
+                    
+                }
+            }
+        }
+        $dades["privilegiats"]=User::index();
+        return view('adminfunc/gestiousers', $dades);
+    }
+    public function haceradmin(Request $request){
+        $user=auth()->user();
+        $email = $request->email;
+        $dades["monitor"]=$user["monitor"];
+        $dades["admin"]=$user["admin"];
+
+        $dades["successA"]=false;
+        $dades["nomuser"]=$email;
+        $dades["eventos"] = Eventos::Proximos();
+        $usuario= User::buscaruser($email);
+        
+        if($user["admin"]){
+            if(count($usuario)!=0){
+                if($usuario[0]["admin"]==0){
+                    
+                    $dades["successA"] = User::haceradmin($usuario[0]['email']);
+                    $dades["monitoruser"] = true;
+                    
+                }
+            }
+        }
+        $dades["privilegiats"]=User::index();
+        return view('adminfunc/gestiousers', $dades);
+    }
+    public function quitaradmin(Request $request){
+        $user=auth()->user();
+        $email = $request->email;
+        $dades["monitor"]=$user["monitor"];
+        $dades["admin"]=$user["admin"];
+
+        $dades["desprivilegiatA"]=false;
+        $dades["nomuser"]=$email;
+        $dades["eventos"] = Eventos::Proximos();
+        $usuario= User::buscaruser($email);
+        if($user["admin"]){
+            if(count($usuario)>0){
+                if($usuario[0]["admin"]==1){
+                    
+                    $dades["desprivilegiatA"] = User::quitaradmin($usuario[0]['email']);
+                    $dades["monitoruser"] = true;
+                    
+                }
+            }
+        }
+        $dades["privilegiats"]=User::index();
+        return view('adminfunc/gestiousers', $dades);
     }
 
     public function buscarEvento(Request $request){
@@ -145,6 +215,7 @@ class adminFuncController extends Controller
         $evento = Eventos::find($request->id);
         $evento["nombre"] = $request->nombre;
         $evento["descripcion"] = $request->desc;
+        $evento["url_google_maps"] = str_replace('width="600" height="450"','width="100%"',$request->url);
         $evento["fecha_hora_evento"] = $request->data;
         $evento->save();
 
@@ -268,7 +339,7 @@ class adminFuncController extends Controller
             $evento["nombre"] = $request->nombre;
             $evento["descripcion"] = $request->desc;
             $evento["fecha_hora_evento"] = $request->data;
-            $evento["url_google_maps"] = $request->url;
+            $evento["url_google_maps"] = str_replace('width="600" height="450"','width="100%"',$request->url);
             $evento["curso"] = $request->curs;
             $evento->save();
     

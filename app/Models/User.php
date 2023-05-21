@@ -49,7 +49,11 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function scopeindex($query){
-        return $query->select('*')->where('monitor',true)->get();
+        return $query->select('*')
+        ->where('monitor',true)
+        ->orWhere('admin',true)
+        ->get();
+
     }
 
     public function scopebuscaruser($query, $correo){
@@ -65,6 +69,27 @@ class User extends Authenticatable implements MustVerifyEmail
        return true;
 
     }
+
+    public function scopequitarMonitor($query,$correo){
+        $user = User::where('email',$correo)->first();
+        $user->monitor = 0;
+        return $user->save();
+    }
+    public function scopehaceradmin($query,$correo){
+        $user = User::where('email',$correo)->first();
+        $user->admin = 1;
+        $user->save();
+
+       return true;
+
+    }
+
+    public function scopequitaradmin($query,$correo){
+        $user = User::where('email',$correo)->first();
+        $user->admin = 0;
+        return $user->save();
+    }
+
 
     public function scopeVerRegistrodePagos($query){
         return $query->select('name','email','monitor')->where('monitor',true)->get();

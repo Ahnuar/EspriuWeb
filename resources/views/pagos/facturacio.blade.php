@@ -46,6 +46,27 @@
                     </table>
                 </div>
             </div>
+
+
+            <div class="row">
+                <div class="col-12">
+                    <form method="POST" action="{{ route('facturacio.deletehora') }}">
+                        @csrf
+                        <div class="form-group">
+                            @if(isset($horasNoperiodicas) && $horasNoperiodicas)
+    
+                                <label for ="hora">Horas Apuntas No Periodicament</label>
+                                <select name="hora" id="hora" class="form-control my-2">
+                                    @foreach($horasNoperiodicas as $hora)
+                                        <option value="{{ $hora }}"> Hora inici: {{$hora->hora_inicio }}, Hora Fi: {{ $hora->hora_fin }}, Data: {{$hora->fecha}}, Infant: {{$hora->nombre}}</option>
+                                    @endforeach
+                                </select>
+                                <button type="submit" class="btn btn-primary mt-5 d-flex" style="float: right;">delete</button>
+                            @endif
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
     

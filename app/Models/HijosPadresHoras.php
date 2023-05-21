@@ -64,6 +64,18 @@ class HijosPadresHoras extends Model
         return $query;
 
     }
+
+    public function scopeVerHorasSiguientesHorasNoPeriodicas($query,$idpadre){
+        //de las proximas fechas 
+        return $query -> select('hijos_padres_horas.fecha', 'hijos_padres_horas.hora_inicio', 'hijos_padres_horas.hora_fin','hijos.nombre','hijos.id')
+        ->join('hijos', 'hijos_padres_horas.idhijo', '=', 'hijos.id')
+        ->where('hijos_padres_horas.idpadre',$idpadre)
+        ->where('hijos_padres_horas.fecha','>=',Carbon::now()->toDateString())
+        ->where('hijos_padres_horas.hora_inicio','>=',Carbon::now()->toTimeString())
+        ->where('hijos_padres_horas.casual',"=",1)
+        ->get();
+        ;        
+    }
     
     
 }

@@ -23,4 +23,10 @@ class EventosUser extends Model
             ->where('eventos_user.eventos_id',$event);
         return $query->get();
     }
+    public function scopeDesasignar($query,$event,$hijo){
+        $query
+            ->where('eventos_id',$event)
+            ->where('hijo_id',$hijo);
+        return $query->delete();
+    }
 }

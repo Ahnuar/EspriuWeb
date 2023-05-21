@@ -74,6 +74,7 @@
                         </div>
                         <label for="nombre"  >Nom:</label><input required class="form-control pepe" value="{{$eventoSelected->nombre}}" type="text" name="nombre" id="nombre"  ><br><br>
                         <label for="desc"  >Descripció:</label><textarea required class="form-control pepe" name="desc" id="desc"  >{{$eventoSelected->descripcion}}</textarea><br><br>
+                        <label for="url"  >Iframe Google Maps:</label><textarea required class="form-control pepe" name="url" id="url"  >{{$eventoSelected->url_google_maps}}</textarea><br><br>
                         <label for="data"  >Data-Hora:</label><input required class="form-control pepe" type="datetime-local" id="data" name="data" value="{{$eventoSelected->fecha_hora_evento}}"><br><br>
                         <button type="submit" class="btn btn-primary" style="float: left">Modificar</button>
     
@@ -103,7 +104,7 @@
                         </div>
                         <label for="nombre"  >Nom:</label><input required class="form-control pepe" value="{{$evento->nombre}}" type="text" name="nombre" id="nombre"  ><br><br>
                         <label for="desc"  >Descripció:</label><textarea required class="form-control pepe" name="desc" id="desc"  >{{$evento->descripcion}}</textarea><br><br>
-                        <label for="url"  >Url Google Maps:</label><textarea required class="form-control pepe" name="url" id="url"  >{{$evento->url_google_maps}}</textarea><br><br>
+                        <label for="url"  >Iframe Google Maps:</label><textarea required class="form-control pepe" name="url" id="url"  >{{$evento->url_google_maps}}</textarea><br><br>
                         <label for="curs"  >Curs:</label><input required class="form-control pepe" value="{{$evento->curso}}" type="text" name="curs" id="curs"  ><br><br>
                         <label for="data"  >Data-Hora:</label><input required class="form-control pepe" type="datetime-local" id="data" name="data" value="{{$evento->fecha_hora_evento}}"><br><br>
                         <button type="submit" class="btn btn-primary" style="float: left">Modificar</button>
@@ -139,7 +140,7 @@
             </div>
             <label for="nombre">Nom:</label><input required class="form-control pepe" type="text" name="nombre" id="nombre"><br><br>
             <label for="desc"  >Descripció:</label><textarea required class="form-control pepe" name="desc" id="desc" ></textarea><br><br>
-            <label for="url"  >Url Google Maps:</label><textarea required class="form-control pepe" name="url" id="url"></textarea><br><br>
+            <label for="url"  >Iframe Google Maps:</label><textarea required class="form-control pepe" name="url" id="url"></textarea><br><br>
             <label for="curs"  >Curs:</label><input required class="form-control pepe" type="text" name="curs" id="curs"><br><br>
             <label for="data"  >Data-Hora:</label><input required class="form-control pepe" type="datetime-local" id="data" name="data"><br><br>
             <button type="submit" class="btn btn-primary" >Insertar</button>

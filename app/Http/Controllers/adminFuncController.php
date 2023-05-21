@@ -145,6 +145,7 @@ class adminFuncController extends Controller
         $evento = Eventos::find($request->id);
         $evento["nombre"] = $request->nombre;
         $evento["descripcion"] = $request->desc;
+        $evento["url_google_maps"] = str_replace('width="600" height="450"','width="100%"',$request->url);
         $evento["fecha_hora_evento"] = $request->data;
         $evento->save();
 
@@ -268,7 +269,7 @@ class adminFuncController extends Controller
             $evento["nombre"] = $request->nombre;
             $evento["descripcion"] = $request->desc;
             $evento["fecha_hora_evento"] = $request->data;
-            $evento["url_google_maps"] = $request->url;
+            $evento["url_google_maps"] = str_replace('width="600" height="450"','',$request->url);
             $evento["curso"] = $request->curs;
             $evento->save();
     

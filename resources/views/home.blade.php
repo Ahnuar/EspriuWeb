@@ -136,8 +136,7 @@
     @include('adminfunc/gestionadmin')
     @endif
 
-
-    @if($monitor)
+    @if($monitor || $admin)
     @include('monitorfunc/gestionmonitor')
     @endif
 </div>

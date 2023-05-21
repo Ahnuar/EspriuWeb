@@ -4,7 +4,7 @@
         <p class="card-text">{{$evento->descripcion}}</p>
         <p class="card-text">{{$evento->fecha_hora_evento}}</p>
         <p class="card-text">Gent apuntada: {{$evento->conteo}}</p>
-        @if($evento->url_google_maps!=null && $evento->url_google_maps!='')
+        @if($evento->url_google_maps!=null && $evento->url_google_maps!='' && str_contains($evento->url_google_maps, '<iframe src="https://www.google.com/maps'))
            <div class="w-100"> {!! $evento->url_google_maps !!}</div>
         @endif
         <br>

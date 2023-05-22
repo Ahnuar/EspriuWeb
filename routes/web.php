@@ -25,6 +25,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/eventos',[App\Http\Controllers\EventosController::class,'index'])->name('eventos');
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/facturacio',[App\Http\Controllers\FacturacioController::class,'index'])->name('facturacio');
+    Route::post('/facturacio',[App\Http\Controllers\FacturacioController::class,'delete'])->name('facturacio.deletehora');
     Route::get('/lista',[App\Http\Controllers\FacturacioController::class,'lista'])->name('lista');
     Route::get('/eventos/{evento}/lista',[App\Http\Controllers\EventosController::class,'listaApuntados'])->name('listaApuntados');
     

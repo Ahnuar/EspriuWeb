@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Eventos;
+use App\Models\Hijos; 
 use App\Models\HijosPadresHoras;
 
 class facturacioController extends Controller{
@@ -22,8 +23,10 @@ class facturacioController extends Controller{
             }
             $dades['facturacio'] = $facturacio;
         }
-
-        return view('/pagos/facturacio', $dades['facturacio']);
+        $idpadre = auth()->user()->id;
+        $dades['horasNoperiodicas']= HijosPadresHoras::VerHorasSiguientesHorasNoPeriodicas($idpadre);
+        
+        return view('/pagos/facturacio', $dades);
     }
     
     public function obtenerFacturacion($mes){
@@ -66,6 +69,15 @@ class facturacioController extends Controller{
             return redirect('/home');
         }
         
+    }
+
+    public function delete(Request $request){
+
+        $hora = json_decode($request['hora']);
+        HijosPadresHoras::eliminarHoras($hora->fecha,$hora->hora_inicio,$hora->hora_fin,$hora->id);
+        
+        return redirect()->route('facturacio')->with('success', 'Infant eliminat correctament. Veure Facturació');
+
     }
 
 

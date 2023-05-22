@@ -128,6 +128,7 @@ class HorasAcogidaController extends Controller
                         $hijosPadresHoras->fecha = $inicio->format('Y-m-d');
                         $hijosPadresHoras->hora_inicio = $hora->hora_inicio;
                         $hijosPadresHoras->hora_fin = $hora->hora_fin;
+                        $hijosPadresHoras->casual = 0;
                         $hijosPadresHoras->save();
                     
                         echo "El registro ha sido creado.";
@@ -189,6 +190,7 @@ class HorasAcogidaController extends Controller
             $hijosPadresHoras->fecha = $diaElegido;
             $hijosPadresHoras->hora_inicio = $horaElegida;
             $hijosPadresHoras->hora_fin = $finhoraElegida;
+            $hijosPadresHoras->casual = 1;
             $hijosPadresHoras->save();
 
         }catch(\Exception $e){

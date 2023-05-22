@@ -27,6 +27,8 @@ class EventosController extends Controller
      */
     public function index()
     {
+        $dades["admin"]=false;
+        $dades["monitor"]=false;
         $user=auth()->user();
         if($user["admin"]==1){
             $dades["admin"]=true;
@@ -45,6 +47,8 @@ class EventosController extends Controller
 
     public function signup(Request $request)
     {
+        $dades["admin"]=false;
+        $dades["monitor"]=false;
         $request->validate([
             'selectHijo' => 'required|exists:hijos_padres,hijos_id,user_id,' . auth()->user()->id
         ]);
@@ -81,7 +85,8 @@ class EventosController extends Controller
     public function desasignarse(Request $request)
     {
        
-        
+        $dades["admin"]=false;
+        $dades["monitor"]=false;
 
         $user=auth()->user();
         if($user["admin"]==1){

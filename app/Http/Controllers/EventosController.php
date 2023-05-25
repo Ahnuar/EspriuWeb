@@ -113,7 +113,6 @@ class EventosController extends Controller
     }
 
     public function listaApuntados($evento){
-        $dades["listaApuntados"]=EventosUser::listaApuntados($evento);
         $user=auth()->user();
         if($user["admin"]==1){
             $dades["admin"]=true;
@@ -122,6 +121,13 @@ class EventosController extends Controller
         if($user["monitor"]==1){
             $dades["monitor"]=true;
         }
+        if($user["monitor"] || $user["admin"]){
+            $dades["listaApuntados"]=EventosUser::listaApuntados($evento);
+        }else{
+            return redirect('/');
+        }
+
+
 
         return view('eventos/listaApuntados',$dades);
     }

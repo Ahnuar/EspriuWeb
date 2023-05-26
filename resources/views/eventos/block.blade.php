@@ -3,7 +3,7 @@
     <div class="card-body">
         <p class="card-text">{{$evento->descripcion}}</p>
         <p class="card-text">{{$evento->fecha_hora_evento}}</p>
-        @if(isset($admin) && $admin)
+        @if(isset($admin))
             @if($admin || $monitor)
                 <p class="card-text">Infants apuntats: <a href="{{route('listaApuntados',['evento' => $evento->id])}}">{{$evento->conteo}}</a></p>
             @endif

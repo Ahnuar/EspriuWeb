@@ -8,9 +8,9 @@
                 <h1>Llista apuntats: </h1>
                 <table class="table">
                     <thead>
-                        <th scope="col">Nom Pare</th>
-                        <th scope="col">Nom Fill</th>
-                        <th scope="col">Cognoms Fill</th>
+                        <th scope="col">Persona asignada</th>
+                        <th scope="col">Nom Infant</th>
+                        <th scope="col">Cognoms Infant</th>
                         <th scope="col">Correu</th>
                     </thead>
                     <tbody>

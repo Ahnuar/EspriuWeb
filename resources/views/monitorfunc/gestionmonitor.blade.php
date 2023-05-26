@@ -26,7 +26,7 @@
                                         <option value="9">Septembre</option>
                                         <option value="10">Octubre</option>
                                         <option value="11">Novembre</option>
-                                        <option value="12">Decembre</option> 
+                                        <option value="12">Desembre</option> 
                                     </select>
                                 </form>
                             

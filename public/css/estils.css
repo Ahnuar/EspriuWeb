@@ -71,6 +71,10 @@ html{
 @media (min-width: 728px){
     .pepe{width: 50%;}
 }
+@media (max-width: 728px) {
+    .dnone{display: none;}
+}
+    
 
 .carrusel{
     height: 550px;

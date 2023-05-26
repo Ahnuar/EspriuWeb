@@ -40,10 +40,10 @@
                         <thead>
                             <tr>
                                 <th scope="col">Nom Alumne</th>
-                                <th scope="col" class="d-none d-md-inline-block">Cognoms</th>
+                                <th scope="col" class="dnone">Cognoms</th>
                                 <th scope="col">Dia</th>
-                                <th scope="col" class="d-none d-md-inline-block">Hora Inici</th>
-                                <th scope="col" class="d-none d-md-inline-block">Hora Final</th>
+                                <th scope="col" class="dnone">Hora Inici</th>
+                                <th scope="col" class="dnone">Hora Final</th>
                                 <th scope="col">Preu</th>
                             </tr>
                         </thead>

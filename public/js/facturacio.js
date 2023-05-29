@@ -35,10 +35,10 @@ function obtenerFacturacion(mes){
                 let fila           = document.createElement('tr');
                 fila.innerHTML     = `
                     <td>${fecha.nombre}</td>
-                    <td class="d-none d-md-inline-block">${fecha.apellidos}</td>
+                    <td class="dnone">${fecha.apellidos}</td>
                     <td>${fecha.fecha}</td>
-                    <td class="d-none d-md-inline-block">${fecha.hora_inicio}</td>
-                    <td class="d-none d-md-inline-block">${fecha.hora_fin}</td>
+                    <td class="dnone">${fecha.hora_inicio}</td>
+                    <td class="dnone">${fecha.hora_fin}</td>
                     <td>${fecha.Precio}</td>
                     `;
                     precio = precio + fecha.Precio;

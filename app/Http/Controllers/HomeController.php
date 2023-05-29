@@ -140,8 +140,22 @@ class HomeController extends Controller
         $dades["exportat"]=false;
         $resultados = HijosPadresHoras::VerApuntadosPorFechaAgrupados($request->mes);
         if(count($resultados)!=0){
-            // Crear el objeto Writer
-            $csv = Writer::createFromPath(getenv('USERPROFILE') . DIRECTORY_SEPARATOR . 'Desktop'.'\Facturacio.csv', 'w');
+            // Crear el objeto Write  
+            $meses = [
+                1 => "Gener",
+                2 => "Febrer",
+                3 => "Març",
+                4 => "Abril",
+                5 => "Maig",
+                6 => "Juny",
+                7 => "Juliol",
+                8 => "Agost",
+                9 => "Setembre",
+                10 => "Octubre",
+                11 => "Novembre",
+                12 => "Desembre"
+            ];
+            $csv = Writer::createFromPath(getenv('USERPROFILE') . DIRECTORY_SEPARATOR . 'Desktop'.'\Facturacio-'.$meses[$request->mes].'.csv', 'w');
     
             // Escribir los encabezados
             $csv->insertOne(['Nom Usuari', 'Nom Infant', 'Cognoms Infant', 'Correo Infant', 'Total Preu']);

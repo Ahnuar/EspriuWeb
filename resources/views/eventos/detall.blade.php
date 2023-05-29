@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2 class="text-center mb-5">Eventos</h2>
+            <h2 class="text-center mb-5">Events</h2>
         </div>
     </div>
     <div class="row">  
@@ -22,7 +22,7 @@
             @endforeach
         @else
             <div class="col-12">
-                <h3 class="text-center">No hay eventos</h3>
+                <h3 class="text-center">No hi ha events</h3>
             </div>
         @endif
     </div>

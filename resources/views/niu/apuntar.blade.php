@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="form-group my-3">
-                        <label for="hijo">Hijo</label>
+                        <label for="hijo">Infant</label>
                         <select name="hijo" id="hijo" class="form-control">
                             @foreach($hijos as $hijo)
                                 <option value="{{ $hijo->id }}" @if(old('hijo') == $hijo->id) selected @endif>{{ $hijo->nombre }}</option>
@@ -51,8 +51,8 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <button type="submit" class="btn btn-primary my-3" id="btnFacturacion">Facturacion periodica</button>
-                <button type="submit" class="btn btn-primary my-3" id="btnFacturacionManual" style="display: none;">Facturacion manual</button>
+                <button type="submit" class="btn btn-primary my-3" id="btnFacturacion">Facturació periòdica</button>
+                <button type="submit" class="btn btn-primary my-3" id="btnFacturacionManual" style="display: none;">Facturació manual</button>
             </div>
 
 
@@ -63,7 +63,7 @@
                     @csrf
                     <div class="form-group">
                         @if(isset($horas) && $horas)
-                            <label for="hijo">Hijo</label>
+                            <label for="hijo">Infant</label>
                             <select name="hijo" id="hijo" class="form-control my-2">
                                 @foreach($hijos as $hijo)
                                     <option value="{{ $hijo->id }}" @if(old('hijo') == $hijo->id) selected @endif>{{ $hijo->nombre }}</option>

@@ -2,7 +2,7 @@
     <div class="card-header text-center"><h5>{{$evento->nombre}}</h5></div>
     <div class="card-body">
         <p class="card-text">{{$evento->descripcion}}</p>
-        <p class="card-text">{{$evento->fecha_hora_evento}}</p>
+        <p class="card-text">{{date("d/m/Y H:i:s", strtotime($evento->fecha_hora_evento))}}</p>
         @if(isset($admin))
             @if($admin || $monitor)
                 <p class="card-text">Infants apuntats: <a href="{{route('listaApuntados',['evento' => $evento->id])}}">{{$evento->conteo}}</a></p>
